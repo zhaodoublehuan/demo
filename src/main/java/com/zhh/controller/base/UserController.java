@@ -61,12 +61,12 @@ public class UserController extends BaseController {
 	* @throws 
 	*/ 
 	
-	@RequestMapping(method = RequestMethod.POST,value="/addUser")
+	@RequestMapping("/addUser")
 	@ResponseBody
-	public  ReturnResult addUser(UserEntity user){
+	public  ReturnResult addUser(UserEntity userEntity){
 		ReturnResult result = new ReturnResult();
 		try {
-			userService.add(user);
+			userService.add(userEntity);
 			result.setStatus(0);
 			result.setMsg("添加用户成功");
 		} catch (UserException e) {

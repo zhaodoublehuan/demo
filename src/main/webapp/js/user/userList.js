@@ -18,8 +18,7 @@ function addUserSave(){
 	$.ajax({
 		"url":pjUrl+"/user/addUser",
 		"type":"POST",
-		"dataType": "json",   
-		"contentType": "application/json",    
+		"dataType": "json",
 		"data":$("#addUserForm").serialize(),
 		success:function(data){
 			alert(eval(data));

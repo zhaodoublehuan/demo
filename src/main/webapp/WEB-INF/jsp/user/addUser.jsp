@@ -12,31 +12,31 @@
               <div class="modal-body">
 	             <form class="form-horizontal" id="addUserForm">
 	             	<div class="form-group">
-	                  <label for="loginNo" class="col-sm-2 control-label">登录账号</label>
+	                  <label class="col-sm-2 control-label">登录账号</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="loginNo" autocomplete="off" id="loginNo_add" placeholder="登录账号">
+	                    <input type="text" class="form-control" name="loginNo" autocomplete="off" placeholder="登录账号">
 	                  </div>
 	                </div>
 	                <div class="form-group">
-	                  <label for="userName" class="col-sm-2 control-label">姓名</label>
+	                  <label class="col-sm-2 control-label">姓名</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="userName" autocomplete="off" id="userName_add" placeholder="用户姓名">
+	                    <input type="text" class="form-control" name="userName" autocomplete="off" placeholder="用户姓名">
 	                  </div>
 	                </div>
 	                <div class="form-group">
-	                  <label for="password" class="col-sm-2 control-label">密码</label>
+	                  <label class="col-sm-2 control-label">密码</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="password" class="form-control" name="password" autocomplete="off" id="password_add" placeholder="登录密码">
+	                    <input type="password" class="form-control" name="password" autocomplete="off" placeholder="登录密码">
 	                  </div>
 	                </div>
 					 <div class="form-group">
-						 <label for="mobile" class="col-sm-2 control-label">手机号码</label>
+						 <label class="col-sm-2 control-label">手机号码</label>
 
 						 <div class="col-sm-10">
-							 <input type="text" class="form-control" name="mobile" autocomplete="off"s id="mobile_add" placeholder="手机号码">
+							 <input type="text" class="form-control" name="mobile" autocomplete="off" placeholder="手机号码">
 						 </div>
 					 </div>
 	            </form>
