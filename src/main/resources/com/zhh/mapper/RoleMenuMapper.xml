@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.dao.IRoleMenuDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.RoleMenu" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="menu_id" property="menuId" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, menu_id, role_id, insert_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_role_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from sys_role_menu
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zhh.entity.RoleMenu" >
+    insert into sys_role_menu (menu_id, role_id,insert_date
+      )
+    values ( #{menuId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{insertDate,jdbcType=TIMESTAMP}}
+      )
+  </insert>
+  <select id="selectMenuIdsByRoleIds" parameterType="java.util.List" resultType="java.lang.String">
+    select menu_id from  sys_role_menu  where role_id in
+    <foreach collection="roleIds" item="roleId" index="index"
+             open="(" close=")" separator=",">
+      #{roleId}
+    </foreach>
+  </select>
+</mapper>

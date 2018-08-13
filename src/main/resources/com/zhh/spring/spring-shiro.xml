@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>   
+<beans xmlns="http://www.springframework.org/schema/beans"  
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+     xmlns:context="http://www.springframework.org/schema/context"  
+     xsi:schemaLocation="http://www.springframework.org/schema/beans 
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+     http://www.springframework.org/schema/context 
+     http://www.springframework.org/schema/context/spring-context-3.0.xsd">  
+    
+    <!-- 配置shiro的过滤器工厂类，id- shiroFilter要和我们在web.xml中配置的过滤器一致 --> 
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">  
+	<!-- 调用我们配置的权限管理器 -->    
+     <property name="securityManager" ref="securityManager"/>   
+     <!-- 配置我们的登录请求地址 -->
+     <property name="loginUrl" value="/login"/>
+     <!-- 配置我们在登录页登录成功后的跳转地址，如果你访问的是非/login地址，则跳到您访问的地址 -->     
+     <property name="successUrl" value="/chart/index"/>
+     <!-- 如果您请求的资源不再您的权限范围，则跳转到/403请求地址,提示没有页面权限 -->  
+     <property name="unauthorizedUrl" value="/403"/> 
+     <!-- 权限配置 -->   
+     <property name="filterChainDefinitions" >   
+         <value>
+        	 <!-- anon表示此地址不需要任何权限即可访问 -->   
+             /login=anon
+             /bootstrap/**=anon
+            /** = authc
+            <!-- 表示要有编辑角色的权限的用户，才能访问 -->
+            <!-- /role/edit/*=perms[role:edit]  
+            /role/save=perms[role:edit]  
+            /role/list=perms[role:view]  -->
+            <!--所有的请求(除去配置的静态资源请求或请求地址为anon的请求)都要通过登录验证,如果未登录则跳到/login-->  
+            <!-- /**=authc -->
+         </value>   
+     </property>   
+	</bean>
+	<bean id = "myRealm" class="com.zhh.realm.UserRealm">
+		<property name="cacheManager" ref="cacheManagerShiro"/>
+		<!-- 配置密码匹配器 -->  
+        <property name="credentialsMatcher">    
+            <bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">    
+            	<!-- 加密算法 -->
+                <property name="hashAlgorithmName" value="MD5" />  
+                <!-- 加密次数 -->
+                <property name="hashIterations" value="2"></property>
+                <property name="storedCredentialsHexEncoded" value="true"></property>
+            </bean>    
+        </property>    
+	</bean>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+	<!-- 配置权限管理器 -->
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager" >   
+      <property name="realm" ref="myRealm"/> 
+      <!-- 使用下面配置的缓存管理器 -->  
+      <property name="cacheManager" ref="cacheManagerShiro"/>
+	</bean>   
+	<!-- 配置缓存管理器 -->
+	<bean id="cacheManagerShiro" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+	
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+ </beans>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.dao.IProductRecordDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.ProductRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="product_count" property="productCount" jdbcType="DECIMAL" />
+    <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
+    <result column="inout_date" property="inoutDate" jdbcType="TIMESTAMP" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <association property="product" column="product_id"  select="getProductData"/>
+    <association property="productShop" column="product_shop_id"  select="getProductShop"/>
+    <association property="productInoutType" column="product_inout_type"  select="getDictData"/>
+  </resultMap>
+  <select id="getProductShop" parameterType="int" resultType="com.zhh.entity.ProductShop">
+    select * from product_shop where id=#{id}
+  </select>
+  <select id="getProductData" parameterType="int" resultType="com.zhh.entity.Product">
+    select * from product where id=#{id}
+  </select>
+  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
+    select * from dict_data where id=#{id}
+  </select>
+  <insert id="insert" parameterType="com.zhh.entity.ProductRecord" >
+    insert into product_inout_record (product_id, product_count,
+      product_price, product_shop_id, product_inout_type,inout_date,
+      insert_date, update_date)
+    values (#{product.id,jdbcType=INTEGER}, #{productCount,jdbcType=DECIMAL},
+      #{productPrice,jdbcType=DECIMAL}, #{productShop.id,jdbcType=INTEGER}, #{productInoutType.id,jdbcType=INTEGER},
+     #{inoutDate,jdbcType=TIMESTAMP}, #{insertDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    *
+    from product_inout_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_inout_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.ProductRecord" >
+    update product_inout_record
+    set product_id = #{product.id,jdbcType=INTEGER},
+      product_count = #{productCount,jdbcType=DECIMAL},
+      product_price = #{productPrice,jdbcType=DECIMAL},
+      product_shop_id = #{productShop.id,jdbcType=INTEGER},
+      product_inout_type = #{productInoutType.id,jdbcType=INTEGER},
+      inout_date = #{inoutDate,jdbcType=TIMESTAMP},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectRecordCount" parameterType="com.zhh.entity.ProductRecord" resultType="java.lang.Integer">
+    select count(1) from product_inout_record
+    <where>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productCount != null" >
+        product_count = #{productCount,jdbcType=DECIMAL},
+      </if>
+      <if test="productPrice != null" >
+        product_price = #{productPrice,jdbcType=DECIMAL},
+      </if>
+
+      <if test="productInoutType != null" >
+        product_inout_type = #{productInoutType,jdbcType=INTEGER},
+      </if>
+      <if test="insertDate != null" >
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </where>
+  </select>
+  <select id="selectRecordListPage" resultMap="BaseResultMap">
+    select
+    *
+    from product_inout_record
+    <where>
+      <if test="record !=null and record.productId != null" >
+        product_id = #{record.productId,jdbcType=INTEGER},
+      </if>
+      <if test="record !=null and record.productCount != null" >
+        product_count = #{record.productCount,jdbcType=DECIMAL},
+      </if>
+      <if test="record !=null and record.productPrice != null" >
+        product_price = #{record.productPrice,jdbcType=DECIMAL},
+      </if>
+
+      <if test="record !=null and record.productInoutType != null" >
+        product_inout_type = #{record.productInoutType,jdbcType=INTEGER},
+      </if>
+      <if test="record !=null and record.insertDate != null" >
+        insert_date = #{record.insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record !=null and record.updateDate != null" >
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </where>
+    limit #{page.recordStart},#{page.pageSize}
+  </select>
+</mapper>

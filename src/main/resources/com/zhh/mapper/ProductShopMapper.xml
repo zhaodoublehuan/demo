@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.dao.IProductShopDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.ProductShop" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <association property="shopType" column="shop_type"  select="getDictData"/>
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, remark, insert_date, update_date
+  </sql>
+  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
+    select * from dict_data where id=#{id}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_shop
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="selectAllShop" resultMap="BaseResultMap">
+    select
+    *
+    from product_shop
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    *
+    from product_shop
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.ProductShop" >
+    update product_shop
+    set name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      shop_type = #{shopType.id,jdbcType=INTEGER},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insert" parameterType="com.zhh.entity.ProductShop">
+    insert into product_shop ( name, remark,
+      shop_type, insert_date, update_date
+      )
+    values (#{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+      #{shopType.id,jdbcType=INTEGER}, #{insertDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <select id="selectShopCount" parameterType="com.zhh.entity.ProductShop" resultType="java.lang.Integer">
+    select count(1) from product_shop
+    <where>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </where>
+  </select>
+  <select id="selectShopListPage" resultMap="BaseResultMap">
+    select
+    *
+    from product_shop
+    <where>
+      <if test="shop !=null and shop.name != null" >
+        name = #{shop.name,jdbcType=VARCHAR},
+      </if>
+      <if test="shop !=null and shop.remark != null" >
+        remark = #{shop.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="shop !=null and shop.insertDate != null" >
+        insert_date = #{shop.insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shop !=null and shop.updateDate != null" >
+        update_date = #{shop.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </where>
+    limit #{page.recordStart},#{page.pageSize}
+  </select>
+</mapper>

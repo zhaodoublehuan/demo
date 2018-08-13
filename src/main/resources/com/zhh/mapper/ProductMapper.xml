@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.dao.IProductDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.Product" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <association property="unitData" column="unit_id"  select="getDictData"/>
+    <association property="productType" column="type_id"  select="getDictData"/>
+  </resultMap>
+
+  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
+    select * from dict_data where id=#{id}
+  </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        *
+        from product
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+  <insert id="insert" parameterType="com.zhh.entity.Product" >
+    insert into product (name, remark,
+      unit_id,type_id,
+      insert_date, update_date)
+    values ( #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR},
+      #{unitData.id,jdbcType=INTEGER},#{productType.id,jdbcType=INTEGER},
+      #{insertDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="getAllProduct" resultMap="BaseResultMap">
+    select * from product
+  </select>
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.Product" >
+    update product
+    set name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      unit_id = #{unitData.id,jdbcType=INTEGER},
+      type_id = #{productType.id,jdbcType=INTEGER},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectProductCount" parameterType="com.zhh.entity.Product" resultType="java.lang.Integer">
+    select count(1) from product
+    <where>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+
+      <if test="unitId != null" >
+        unit_id = #{unitId,jdbcType=INTEGER},
+      </if>
+
+      <if test="insertDate != null" >
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </where>
+  </select>
+  <select id="selectProductListPage" resultMap="BaseResultMap">
+    select
+      *
+    from product
+    <where>
+      <if test="product!=null and product.name != null" >
+        name = #{product.name,jdbcType=VARCHAR},
+      </if>
+      <if test="product!=null and product.remark != null" >
+        remark = #{product.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="product!=null and product.unitId != null" >
+        unit_id = #{product.unitId,jdbcType=INTEGER},
+      </if>
+      <if test="product!=null and product.insertDate != null" >
+        insert_date = #{product.insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="product!=null and product.updateDate != null" >
+        update_date = #{product.updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </where>
+    limit #{page.recordStart},#{page.pageSize}
+  </select>
+</mapper>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.dao.IUserDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.UserEntity" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="login_no" property="loginNo" jdbcType="VARCHAR" />
+    <result column="salt" property="salt" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, login_no, password, mobile, email,active, insert_date, update_date
+  </sql>
+  <!-- 根据条件查询用户集合 -->
+  <select id="selectUsers" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_user
+    	where active = "Y" 
+    	<if test="user!=null">
+	   	  <if test="user.userName != null" >
+	        and user_name = #{user.userName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="user.loginNo != null" >
+	        and login_no = #{user.loginNo,jdbcType=VARCHAR}
+	      </if>
+	      <if test="user.mobile != null" >
+	        and  mobile = #{user.mobile,jdbcType=VARCHAR}
+	      </if>
+	      <if test="user.email != null" >
+	        and  email = #{user.email,jdbcType=VARCHAR}
+	      </if>
+       </if>
+    limit #{page.recordStart},#{page.pageSize}
+  </select>
+  <!-- 新建用户 -->
+  <insert id="add" parameterType="com.zhh.entity.UserEntity" >
+    insert into sys_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginNo != null" >
+        login_no,
+      </if>
+       <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="salt != null" >
+        salt,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+       <if test="active != null" >
+        active,
+      </if>
+      <if test="insertDate != null" >
+        insert_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="loginNo != null" >
+        #{loginNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <!-- 修改用户信息 -->
+  <update id="update" parameterType="com.zhh.entity.UserEntity" >
+    update sys_user
+    <set >
+       <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 批量将用户置为无效 -->
+  <update id="delete" parameterType="java.util.List">
+   	update sys_user set active = "N" where id in 
+   	<foreach collection="ids" item="userId" index="index"
+            open="(" close=")" separator=",">
+            #{userId}
+        </foreach>
+  </update>
+  <!-- 通过账号查询用户信息 -->
+  <select id="findUserByLoginNo" resultMap="BaseResultMap" parameterType="string" >
+  	SELECT   
+     *
+    FROM  
+      	sys_user
+  	where  
+    login_no = #{loginNo} and active="Y"
+  </select>
+  <!-- 查询用户数量 -->
+  <select id="selectUsersCount" resultType="java.lang.Integer" parameterType="com.zhh.entity.UserEntity">
+   	select count(1) from sys_user 
+     <where>
+   	  <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR}
+      </if>
+      <if test="login_no != null" >
+        login_no = #{loginNo,jdbcType=VARCHAR}
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR}
+      </if>
+    </where> 
+  </select>
+</mapper>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.dao.IDictDataDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.DictData" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="seq" property="seq" jdbcType="INTEGER" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, remark, type_id, seq, insert_date, update_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dict_data
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dict_data
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zhh.entity.DictData" >
+    insert into dict_data (id, name, remark, 
+      type_id, seq, insert_date, 
+      update_date)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{typeId,jdbcType=INTEGER}, #{seq,jdbcType=INTEGER}, #{insertDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zhh.entity.DictData" >
+    insert into dict_data
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="seq != null" >
+        seq,
+      </if>
+      <if test="insertDate != null" >
+        insert_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null" >
+        #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="insertDate != null" >
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.DictData" >
+    update dict_data
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="seq != null" >
+        seq = #{seq,jdbcType=INTEGER},
+      </if>
+      <if test="insertDate != null" >
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.DictData" >
+    update dict_data
+    set name = #{name,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      type_id = #{typeId,jdbcType=INTEGER},
+      seq = #{seq,jdbcType=INTEGER},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <sql id="conditionSql">
+    <where>
+      <if test="condition!=null">
+        <if test="condition.name!=null and condition.name!=''">
+          and dd.name like concat('%',#{condition.name,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="condition.remark!=null and condition.remark!=''">
+          and dd.remark like concat('%',#{condition.remark,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="condition.typeName!=null and condition.typeName!=''">
+          and dt.name like concat('%',#{condition.typeName,jdbcType=VARCHAR},'%')
+        </if>
+      </if>
+    </where>
+  </sql>
+  <sql id="pageSql">
+    <if test="page != null">
+      limit #{page.recordStart},#{page.pageSize}
+    </if>
+  </sql>
+  <select id="selectPageCountByCondition" resultType="java.lang.Integer" parameterType="com.zhh.condition.dict.DictDataCondition">
+    SELECT count(0) from dict_data as dd LEFT JOIN dict_type as dt on dd.type_id = dt.id <include refid="conditionSql" />
+  </select>
+
+  <select id="selectPageList" resultType="com.zhh.bean.dict.DictDataBean">
+    SELECT dd.id as id,dd.name as name ,dd.remark as remark,dd.seq as seq ,dt.name as typeName  from dict_data as dd LEFT JOIN dict_type as dt on dd.type_id = dt.id <include refid="conditionSql" /> <include refid="pageSql"/>
+  </select>
+</mapper>

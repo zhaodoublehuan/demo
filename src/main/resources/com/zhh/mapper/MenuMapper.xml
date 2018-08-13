@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zhh.dao.IMenuDao" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.Menu" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="icon_class" property="iconClass" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="VARCHAR" />
+    <result column="active" property="active" jdbcType="VARCHAR" />
+    <result column="leaf" property="leaf" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="parent_id" property="parentId" jdbcType="VARCHAR" />
+    <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <collection property="childrenMenus" column="id" select="getChildrenMenus" />  
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, menu_url, menu_name, icon_class, level, state, sort, active, leaf, description, parent_id,
+    insert_date, update_date
+  </sql>
+  
+  <select id="getChildrenMenus" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select * from sys_menu where parent_id = #{id} and active="Y" order by sort
+  </select>
+  <!-- 新增菜单信息 -->
+  <insert id="insertSelective" parameterType="com.zhh.entity.Menu" >
+     insert into sys_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="menuUrl != null" >
+        menu_url,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="active != null" >
+        active,
+      </if>
+      <if test="leaf != null" >
+        leaf,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="insertDate != null" >
+        insert_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        #{active,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null" >
+        #{leaf,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <!-- 修改菜单信息 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.Menu" >
+    update sys_menu
+    <set >
+      <if test="menuUrl != null" >
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=VARCHAR},
+      </if>
+      <if test="active != null" >
+        active = #{active,jdbcType=VARCHAR},
+      </if>
+      <if test="leaf != null" >
+        leaf = #{leaf,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null" >
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <!-- 逻辑删除菜单信息 -->
+  <update id="deleteMenuById" parameterType="java.lang.String">
+  	update sys_menu set active="N" where id=#{menuId};
+  </update>
+  <!-- 根据查询条件查询对应的菜单集合 -->
+  <select id="selectMenusByIds" resultMap="BaseResultMap" parameterType="java.util.List">
+    select * from  sys_menu  where id in
+    <foreach collection="menuIds" item="menuId" index="index"
+             open="(" close=")" separator=",">
+      #{menuId}
+    </foreach>
+    and active = "Y" order by sort
+  </select>
+</mapper>
