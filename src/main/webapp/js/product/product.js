@@ -58,12 +58,7 @@ function addProductSave(){
         "dataType": "json",
         "data":$("#addProductForm").serialize(),
         success:function(data){
-
-            if(data.status==0){
-                alert(data.msg);
-            }else{
-                alert(data.msg);
-            }
+            alert(data.msg);
             product_table.ajax.reload();
         },
         error:function(){
@@ -89,11 +84,7 @@ function delProduct(id) {
                 "contentType": "application/json",
                 "data":{"id":parseInt(id)},
                 success:function(data){
-                    if(data.status==0){
-                        alert(data.msg);
-                    }else{
-                        alert(data.msg);
-                    }
+                    alert(data.msg);
                     product_table.ajax.reload();
                 },
                 error:function(){

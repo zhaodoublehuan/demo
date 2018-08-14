@@ -5,6 +5,8 @@
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="login_no" property="loginNo" jdbcType="VARCHAR" />
+    <result column="user_age" property="userAge" jdbcType="INTEGER" />
+    <result column="user_sex" property="userSex" jdbcType="INTEGER" />
     <result column="salt" property="salt" jdbcType="VARCHAR" />
     <result column="password" property="password" jdbcType="VARCHAR" />
     <result column="mobile" property="mobile" jdbcType="VARCHAR" />
@@ -14,7 +16,7 @@
     <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, login_no, password, mobile, email,active, insert_date, update_date
+    id, user_name, login_no, password, user_age, user_sex, mobile, email,active, insert_date, update_date
   </sql>
   <!-- 根据条件查询用户集合 -->
   <select id="selectUsers" resultMap="BaseResultMap" parameterType="java.util.Map" >

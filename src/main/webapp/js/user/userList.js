@@ -21,7 +21,8 @@ function addUserSave(){
 		"dataType": "json",
 		"data":$("#addUserForm").serialize(),
 		success:function(data){
-			alert(eval(data));
+			alert(data.msg);
+            user_table.ajax.reload();
 		},
 		error:function(){
 			alert("系统异常，请联系系统管理员");
@@ -42,7 +43,7 @@ function getProjectUrl(){
 }
 $(function () {
 	var pjUrl = getProjectUrl();
-    $("#user_table").DataTable({
+    user_table = $("#user_table").DataTable({
     	"searching":false,
     	"ordering":false,
     	"pagingType":"full_numbers",
@@ -51,11 +52,15 @@ $(function () {
     	"columns": [
 		    { "data": "loginNo" },
 		    { "data": "userName"},
+            { "data": "userAge" },
+            { "data": "userSex"},
+            { "data": "mobile" },
+            { "data": "email"},
 		    { "data": "" }
 		  ],
 		"columnDefs":[
 			{
-			 "targets":2,
+			 "targets":6,
 			 "render":function( data, type, full, meta){
 			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser()"><i class="fa fa-fw fa-edit"></i>编辑</button>';
 			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delUser(this)"><i class="fa fa-fw fa-remove"></i>删除</button>';

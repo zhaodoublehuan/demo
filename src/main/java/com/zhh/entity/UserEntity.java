@@ -20,14 +20,14 @@ public class UserEntity {
     * @Fields id : 主键id
     */
     private String id;
-    /**
-     * @Fields loginNo : 登录账号
-     */
+    //登录账号
     private String loginNo;
-    /**
-    * @Fields userName : 用户账号
-    */
+    //用户账号
     private String userName;
+    //用户年龄
+    private int userAge;
+    //用户性别
+    private int userSex;
     /**
      * @Fields salt : 加密用的盐
      */
