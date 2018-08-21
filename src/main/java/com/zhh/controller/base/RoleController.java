@@ -34,7 +34,7 @@ public class RoleController {
 	 */
 	@RequestMapping(value="/addRole", method = RequestMethod.POST)
 	@ResponseBody
-	public Role addRole(@RequestBody Role role,HttpServletResponse response){
+	public Role addRole(@RequestBody Role role){
 		LOGGER.info("添加角色信息");
 		Role roleEntity = roleService.addRole(role);
 		return roleEntity;

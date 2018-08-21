@@ -129,12 +129,21 @@
   </update>
   
   <!-- 批量将用户置为无效 -->
-  <update id="delete" parameterType="java.util.List">
+  <update id="lockUser" parameterType="java.util.List">
    	update sys_user set active = "N" where id in 
    	<foreach collection="ids" item="userId" index="index"
             open="(" close=")" separator=",">
             #{userId}
         </foreach>
+  </update>
+
+  <!-- 批量将用户置为有效 -->
+  <update id="unLockUser" parameterType="java.util.List">
+    update sys_user set active = "Y" where id in
+    <foreach collection="ids" item="userId" index="index"
+             open="(" close=")" separator=",">
+      #{userId}
+    </foreach>
   </update>
   <!-- 通过账号查询用户信息 -->
   <select id="findUserByLoginNo" resultMap="BaseResultMap" parameterType="string" >

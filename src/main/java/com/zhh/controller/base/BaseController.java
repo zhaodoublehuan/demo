@@ -17,7 +17,6 @@ import java.util.List;
 * 
 */
 
-@SuppressWarnings("restriction")
 public class BaseController {
 	
 	private static final Logger LOGGER = Logger.getLogger(BaseController.class);
@@ -25,6 +24,10 @@ public class BaseController {
 	@Resource
 	private MenuService menuService;
 
+	/**
+	 * 获取当前登录人菜单权限集合
+	 * @return
+	 */
 	public List<Menu> getUserMenus(){
         String  login_no = (String)SecurityUtils.getSubject().getPrincipal();
         LOGGER.error(login_no+"当前登录人");

@@ -3,8 +3,7 @@ package com.zhh.service;
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
 import com.zhh.entity.UserEntity;
-import com.zhh.exception.UserException;
-import com.zhh.service.UserService;
+import com.zhh.exception.ZhhException;
 import com.zhh.util.UUIDUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ public class UserServiceTest extends BaseTest {
 			int a = userService.add(user);
 			System.out.print(a);
 
-		} catch (UserException e) {
+		} catch (ZhhException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -1,17 +1,17 @@
 package com.zhh.exception;
 
-public class UserException extends Exception {
+public class ZhhException extends Exception {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -2100003732313677862L;
 	
-	public UserException(){
+	public ZhhException(){
 		super();
 	}
 	
-	public UserException(String msg){
+	public ZhhException(String msg){
 		super(msg);
 	}
 

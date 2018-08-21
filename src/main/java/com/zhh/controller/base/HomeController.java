@@ -32,29 +32,22 @@ public class HomeController extends BaseController{
 	
 	@Resource
 	private MenuService menuService;
-	/** 
-	* @Title: loginForm 
-	* @Description: 跳转登录页面控制 
-	* @param @param model
-	* @param @return    设定文件 
-	* @return String    返回类型 
-	* @throws 
-	*/ 
-	
+
+    /**
+     * 跳转登录页面控制
+     * @return
+     */
 	@RequestMapping(value="/login",method=RequestMethod.GET)  
     public String loginForm(){  
         return "login";  
-    }  
-      
-    /** 
-    * @Title: login 
-    * @Description: 登录验证 
-    * @param @param user
-    * @param @return    设定文件 
-    * @return String    返回类型 
-    * @throws 
-    */ 
-    
+    }
+
+    /**
+     * 用户登录验证
+     * @param user
+     * @param model
+     * @return
+     */
     @RequestMapping(value="/login",method=RequestMethod.POST)  
     public String login(UserEntity user,Model model) {  
         try {  
@@ -69,33 +62,25 @@ public class HomeController extends BaseController{
         	e.printStackTrace();
             return "login";  
         }  
-    }  
-      
-    /** 
-    * @Title: logout 
-    * @Description: 退出登录方法
-    * @param @param redirectAttributes
-    * @param @return    设定文件 
-    * @return String    返回类型 
-    * @throws 
-    */ 
-    
+    }
+
+    /**
+     * 用户退出登录
+     * @param redirectAttributes
+     * @return
+     */
     @RequestMapping(value="/logout",method=RequestMethod.GET)    
     public String logout(RedirectAttributes redirectAttributes ){   
         //使用权限管理工具进行用户的退出，跳出登录，给出提示信息  
         SecurityUtils.getSubject().logout();    
         redirectAttributes.addFlashAttribute("message", "您已安全退出");    
         return "login";  
-    }   
-      
-    /** 
-    * @Title: unauthorizedRole 
-    * @Description: 用户无操作权限
-    * @param @return    设定文件 
-    * @return String    返回类型 
-    * @throws 
-    */ 
-    
+    }
+
+    /**
+     * 跳转到无权限操作页面
+     * @return
+     */
     @RequestMapping("/403")  
     public String unauthorizedRole(){  
         return "403";  
