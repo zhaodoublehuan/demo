@@ -1,6 +1,7 @@
 package com.zhh.service;
 
 import com.alibaba.fastjson.JSON;
+import com.zhh.condition.menu.MenuCondition;
 import com.zhh.dao.IMenuDao;
 import com.zhh.entity.Menu;
 import com.zhh.util.PageUtil;
@@ -32,15 +33,16 @@ public class MenuService {
 	@Autowired
 	private RoleMenuService roleMenuService;
 
-	
+	/**
+	 * 新增菜单
+	 * @param menu
+	 * @return
+	 */
 	public Menu addMenu(Menu menu) {
 		log.info("添加菜单信息===="+JSON.toJSONString(menu));
 		try{
-			Date today = new Date();
-			/*设置id*/
 			menu.setId(UUIDUtils.getUUID());
-			menu.setInsertDate(today);
-			menu.setUpdateDate(today);
+			menu.setInsertDate(new Date());
 			return menuDao.addMenu(menu);			
 		}catch (Exception e) {
 			log.error("添加菜单信息失败==="+e.getMessage());
@@ -48,12 +50,15 @@ public class MenuService {
 		}
 	}
 
-	
+	/**
+	 * 修改菜单信息
+	 * @param menu
+	 * @return
+	 */
 	public Menu updateMenu(Menu menu) {
 		log.info("修改菜单======"+JSON.toJSONString(menu));
 		try{
-			Date today = new Date();
-			menu.setUpdateDate(today);
+			menu.setUpdateDate(new Date());
 			return menuDao.updateMenu(menu);			
 		}catch (Exception e) {
 			log.error("修改菜单失败====="+e.getMessage());
@@ -65,18 +70,24 @@ public class MenuService {
 	public boolean deleteMenu(String menuId) {
 		log.info("删除菜单======"+menuId);
 		try{
-			return menuDao.deleteMenu(menuId);			
+			menuDao.deleteMenu(menuId);
 		}catch (Exception e) {
 			log.error("删除菜单失败===="+e.getMessage());
 			return false;
 		}
+		return true;
 	}
 
-
-	public List<Menu> selectMenus(Menu menu, PageUtil page) {
+	/**
+	 * 查询所有菜单信息
+	 * @param condition
+	 * @param page
+	 * @return
+	 */
+	public List<Menu> selectMenus(MenuCondition condition, PageUtil page) {
 		try {
-			log.info("查询菜单条件======" + JSON.toJSONString(menu));
-			List<Menu> menus = menuDao.selectMenus(menu, page);
+			log.info("查询菜单条件======" + JSON.toJSONString(condition));
+			List<Menu> menus = menuDao.selectMenus(condition, page);
 			log.info("查询出的菜单为======" + JSON.toJSONString(menus));
 			return menus;
 		} catch (Exception e) {
