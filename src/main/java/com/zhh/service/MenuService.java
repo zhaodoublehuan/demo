@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.zhh.condition.menu.MenuCondition;
 import com.zhh.dao.IMenuDao;
 import com.zhh.entity.Menu;
+import com.zhh.exception.ZhhException;
 import com.zhh.util.PageUtil;
 import com.zhh.util.UUIDUtils;
 import lombok.extern.log4j.Log4j;
@@ -38,7 +39,7 @@ public class MenuService {
 	 * @param menu
 	 * @return
 	 */
-	public Menu addMenu(Menu menu) {
+	public Menu addMenu(Menu menu) throws ZhhException {
 		log.info("添加菜单信息===="+JSON.toJSONString(menu));
 		try{
 			menu.setId(UUIDUtils.getUUID());
@@ -46,7 +47,7 @@ public class MenuService {
 			return menuDao.addMenu(menu);			
 		}catch (Exception e) {
 			log.error("添加菜单信息失败==="+e.getMessage());
-			return null;
+			throw new ZhhException("添加菜单失败");
 		}
 	}
 
@@ -101,6 +102,15 @@ public class MenuService {
 	}
 
 	/**
+	 * 根据查询条件查询数量
+	 * @param condition
+	 * @return
+	 */
+	public int selectMenusCount(MenuCondition condition) {
+		return menuDao.selectMenusCount(condition);
+	}
+
+	/**
 	 * 根据登录账户获取拥有的菜单权限
 	 * @param loginNo
 	 * @return
@@ -131,6 +141,5 @@ public class MenuService {
 	public List<Menu> selectMenusByIds(List<String> menuIds) {
 		return menuDao.selectMenusByIds(menuIds);
 	}
-
 
 }
