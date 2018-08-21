@@ -66,8 +66,12 @@ public class MenuService {
 		}
 	}
 
-	
-	public boolean deleteMenu(String menuId) {
+	/**
+	 * 禁用菜单
+	 * @param menuId
+	 * @return
+	 */
+	public boolean lockMenu(String menuId) {
 		log.info("删除菜单======"+menuId);
 		try{
 			menuDao.deleteMenu(menuId);
@@ -117,9 +121,13 @@ public class MenuService {
 			return new ArrayList<Menu>();
 		}
 
-
 	}
 
+	/**
+	 * 根据菜单id集合获取对应的菜单集合信息
+	 * @param menuIds
+	 * @return
+	 */
 	public List<Menu> selectMenusByIds(List<String> menuIds) {
 		return menuDao.selectMenusByIds(menuIds);
 	}
