@@ -4,7 +4,7 @@ package com.zhh.controller.dict;
 import com.zhh.controller.base.BaseController;
 import com.zhh.entity.DictType;
 import com.zhh.entity.Menu;
-import com.zhh.service.DictTypeService;
+import com.zhh.service.dict.DictTypeService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
 import com.zhh.util.ReturnResult;

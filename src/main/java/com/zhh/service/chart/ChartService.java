@@ -1,4 +1,4 @@
-package com.zhh.service;
+package com.zhh.service.chart;
 
 import com.zhh.dao.IChartDao;
 import com.zhh.entity.chart.ChartData;

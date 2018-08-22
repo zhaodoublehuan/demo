@@ -1,4 +1,4 @@
-package com.zhh.service;
+package com.zhh.service.base;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.condition.menu.MenuCondition;

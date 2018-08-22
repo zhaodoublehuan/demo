@@ -3,7 +3,7 @@ package com.zhh.controller.base;
 import com.alibaba.fastjson.JSON;
 import com.zhh.entity.Menu;
 import com.zhh.entity.UserEntity;
-import com.zhh.service.MenuService;
+import com.zhh.service.base.MenuService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;

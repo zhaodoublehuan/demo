@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.zhh.controller.base.BaseController;
 import com.zhh.entity.Menu;
 import com.zhh.entity.ProductRecord;
-import com.zhh.service.ProductRecordService;
+import com.zhh.service.product.ProductRecordService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
 import com.zhh.util.ReturnResult;

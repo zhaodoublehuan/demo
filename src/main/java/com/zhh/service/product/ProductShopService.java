@@ -1,4 +1,4 @@
-package com.zhh.service;
+package com.zhh.service.product;
 
 import com.zhh.dao.IProductShopDao;
 import com.zhh.entity.ProductShop;

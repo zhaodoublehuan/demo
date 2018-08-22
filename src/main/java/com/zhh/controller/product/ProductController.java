@@ -3,7 +3,7 @@ package com.zhh.controller.product;
 import com.zhh.controller.base.BaseController;
 import com.zhh.entity.Menu;
 import com.zhh.entity.Product;
-import com.zhh.service.ProductService;
+import com.zhh.service.product.ProductService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
 import com.zhh.util.ReturnResult;

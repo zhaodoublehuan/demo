@@ -2,13 +2,12 @@ package com.zhh.controller.base;
 
 import com.zhh.entity.Menu;
 import com.zhh.exception.ZhhException;
-import com.zhh.service.MenuService;
-import com.zhh.service.UserService;
+import com.zhh.service.base.MenuService;
+import com.zhh.service.base.UserService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
 import com.zhh.util.ReturnResult;
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

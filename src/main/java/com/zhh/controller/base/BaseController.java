@@ -1,7 +1,7 @@
 package com.zhh.controller.base;
 
 import com.zhh.entity.Menu;
-import com.zhh.service.MenuService;
+import com.zhh.service.base.MenuService;
 import com.zhh.util.ReturnResult;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;

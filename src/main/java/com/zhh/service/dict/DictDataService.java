@@ -1,4 +1,4 @@
-package com.zhh.service;
+package com.zhh.service.dict;
 
 import com.zhh.bean.dict.DictDataBean;
 import com.zhh.condition.dict.DictDataCondition;

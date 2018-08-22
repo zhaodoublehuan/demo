@@ -1,4 +1,4 @@
-package com.zhh.service;
+package com.zhh.service.product;
 
 import com.zhh.dao.IProductRecordDao;
 import com.zhh.entity.ProductRecord;

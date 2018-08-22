@@ -1,4 +1,4 @@
-package com.zhh.service;
+package com.zhh.service.dict;
 
 import com.zhh.condition.dict.DictTypeCondition;
 import com.zhh.dao.IDictTypeDao;
