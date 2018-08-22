@@ -1,9 +1,11 @@
 package com.zhh.service;
 
 import com.alibaba.fastjson.JSON;
+import com.zhh.condition.role.RoleCondition;
 import com.zhh.dao.IRoleDao;
 import com.zhh.entity.Role;
 import com.zhh.util.CommonParams;
+import com.zhh.util.PageUtil;
 import com.zhh.util.UUIDUtils;
 import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
@@ -99,4 +101,22 @@ public class RoleService {
 		
 	}
 
+	/**
+	 * 获取角色分页数据
+	 * @param condition
+	 * @param page
+	 * @return
+	 */
+	public List<Role> selectRolePage(RoleCondition condition, PageUtil page) {
+		return null;
+	}
+
+	/**
+	 * 查询符合条件的数据量
+	 * @param condition
+	 * @return
+	 */
+	public int selectRolesCount(RoleCondition condition) {
+		return 0;
+	}
 }
