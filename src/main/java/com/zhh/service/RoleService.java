@@ -5,6 +5,7 @@ import com.zhh.dao.IRoleDao;
 import com.zhh.entity.Role;
 import com.zhh.util.CommonParams;
 import com.zhh.util.UUIDUtils;
+import lombok.extern.log4j.Log4j;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,28 +14,23 @@ import javax.annotation.Resource;
 import java.util.Date;
 import java.util.List;
 
-/**
-* @ClassName: RoleService
-* @Description: TODO(这里用一句话描述这个类的作用)
-* @author zhh
-* @date 2016-8-12 上午9:20:46
-* 
-*/
 @SuppressWarnings("restriction")
 @Service
+@Log4j
 public class RoleService {
-	
-	private static final Logger LOGGER = Logger.getLogger(RoleService.class);
-	/**
-	* @Fields roleDao : dao注入
-	*/
+
 	@Resource
 	private IRoleDao roleDao;
 	@Autowired
 	private UserRoleService userRoleService;
 
+	/**
+	 * 新增角色信息
+	 * @param role
+	 * @return
+	 */
 	public Role addRole(Role role) {
-		LOGGER.info("添加角色信息===="+JSON.toJSONString(role));
+		log.info("添加角色信息===="+JSON.toJSONString(role));
 		try{
 			Date now = new Date();
 			role.setId(UUIDUtils.getUUID());
@@ -43,39 +39,52 @@ public class RoleService {
 			role.setUpdateDate(now);
 			return roleDao.addRole(role);
 		}catch (Exception e) {
-			LOGGER.error("添加角色失败===="+e.getMessage());
+			log.error("添加角色失败===="+e.getMessage());
 			return null;
 		}
 		
 	}
 
-	
+	/**
+	 * 修改角色信息
+	 * @param role
+	 * @return
+	 */
 	public Role updateRole(Role role) {
-		LOGGER.info("修改角色信息===="+JSON.toJSONString(role));
+		log.info("修改角色信息===="+JSON.toJSONString(role));
 		try{
 			Date now = new Date();
 			role.setUpdateDate(now);
 			return roleDao.updateRole(role);
 		}catch (Exception e) {
-			LOGGER.error("修改角色失败===="+e.getMessage());
+			log.error("修改角色失败===="+e.getMessage());
 			return null;
 		}
 		
 	}
 
-	
+	/**
+	 * 锁定角色信息
+	 * @param roleId
+	 * @return
+	 */
 	public boolean deleteRole(String roleId) {
-		LOGGER.info("删除角色信息===="+roleId);
+		log.info("删除角色信息===="+roleId);
 		try{
 			return roleDao.deleteRole(roleId);
 		}catch (Exception e) {
-			LOGGER.error("删除角色失败===="+e.getMessage());
+			log.error("删除角色失败===="+e.getMessage());
 			return false;
 		}
 	}
 
+	/**
+	 * 通过账号查询用户所拥有的角色集合
+	 * @param loginNo
+	 * @return
+	 */
 	public List<Role> selectRolesIdByLoginNo(String loginNo) {
-		LOGGER.info("查询用户所拥有的的角色信息===="+loginNo);
+		log.info("查询用户所拥有的的角色信息===="+loginNo);
 		try{
 			List<String> roleIds = userRoleService.selectRolesIdByLoginNo(loginNo);
 			if(roleIds==null){
@@ -84,7 +93,7 @@ public class RoleService {
 				return roleDao.getRolesByRoleIds(roleIds);
 			}
 		}catch (Exception e) {
-			LOGGER.info("查询用户所拥有的的角色信息失败===="+loginNo);
+			log.info("查询用户所拥有的的角色信息失败===="+loginNo);
 			return null;
 		}
 		
