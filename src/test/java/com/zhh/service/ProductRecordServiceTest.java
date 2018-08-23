@@ -3,13 +3,12 @@ package com.zhh.service;
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
 import com.zhh.entity.ProductRecord;
+import com.zhh.service.product.ProductRecordService;
 import com.zhh.util.PageUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class ProductRecordServiceTest extends BaseTest {
 

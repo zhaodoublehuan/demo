@@ -1,6 +1,7 @@
 package com.zhh.service;
 
 import com.zhh.base.BaseTest;
+import com.zhh.service.base.MenuService;
 import org.junit.Test;
 
 import javax.annotation.Resource;

@@ -3,7 +3,7 @@ package com.zhh.service;
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
 import com.zhh.entity.Product;
-import com.zhh.service.ProductService;
+import com.zhh.service.product.ProductService;
 import com.zhh.util.PageUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

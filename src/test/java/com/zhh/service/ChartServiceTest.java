@@ -3,12 +3,11 @@ package com.zhh.service;
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
 import com.zhh.entity.chart.ChartData;
+import com.zhh.service.chart.ChartService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-
-import static org.junit.Assert.*;
 
 public class ChartServiceTest extends BaseTest {
     @Autowired

@@ -2,7 +2,7 @@ package com.zhh.service;
 
 import com.zhh.base.BaseTest;
 import com.zhh.entity.Permission;
-import com.zhh.service.PermissionService;
+import com.zhh.service.base.PermissionService;
 import com.zhh.util.UUIDUtils;
 import org.junit.Test;
 

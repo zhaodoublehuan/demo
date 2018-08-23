@@ -3,6 +3,7 @@ package com.zhh.service;
 import com.zhh.base.BaseTest;
 import com.zhh.bean.dict.DictDataBean;
 import com.zhh.condition.dict.DictDataCondition;
+import com.zhh.service.dict.DictDataService;
 import com.zhh.util.PageUtil;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

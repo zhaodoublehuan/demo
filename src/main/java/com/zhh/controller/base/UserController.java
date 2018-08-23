@@ -28,9 +28,7 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private MenuService menuService;
-	
+
 	/**
 	 * 用户信息初始页面，显示所有用户
 	*/ 
@@ -63,6 +61,16 @@ public class UserController extends BaseController {
 		return result;
 	}
 
+	/**
+	 * 给用户分配角色
+	 * @param roleId
+	 * @return
+	 */
+	public ReturnResult addUserRole(List<String> roleId,String userId){
+		ReturnResult result = new ReturnResult();
+
+		return result;
+	}
 	/**
 	 * 更新用户信息
 	 * @param user

@@ -2,7 +2,7 @@ package com.zhh.service;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
-import com.zhh.service.UserRoleService;
+import com.zhh.service.base.UserRoleService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
