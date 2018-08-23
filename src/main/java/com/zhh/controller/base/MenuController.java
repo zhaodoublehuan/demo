@@ -99,12 +99,12 @@ public class MenuController extends BaseController {
 		/*转换需要的参数*/
 		PageUtil page = PageUtil.getPageParams(aoData);
 		/*查询总条数*/
-		int count = menuService.selectMenusCount(null);
+		int count = menuService.selectPageCountByCondition(null);
 
 		List<Menu> userList = new ArrayList<Menu>();
 		if(count>0){
 			/*查询符合条件的用户*/
-			userList = menuService.selectMenus(null,page);
+			userList = menuService.selectPageList(null,page);
 		}
 
 		return new PageReturnParam(page.getsEcho(),count,userList);

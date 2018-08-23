@@ -26,129 +26,11 @@
   <select id="getMenuById" parameterType="java.lang.String">
     select  <include refid="Base_Column_List" /> from sys_menu where id = #{menuId}
   </select>
+
   <select id="getChildrenMenus" parameterType="java.lang.String" resultMap="BaseResultMap">
       select * from sys_menu where parent_id = #{id} and active="Y" order by sort
   </select>
-  <!-- 新增菜单信息 -->
-  <insert id="insertSelective" parameterType="com.zhh.entity.Menu" >
-     insert into sys_menu
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="menuUrl != null" >
-        menu_url,
-      </if>
-      <if test="menuName != null" >
-        menu_name,
-      </if>
-      <if test="level != null" >
-        level,
-      </if>
-      <if test="state != null" >
-        state,
-      </if>
-      <if test="sort != null" >
-        sort,
-      </if>
-      <if test="active != null" >
-        active,
-      </if>
-      <if test="leaf != null" >
-        leaf,
-      </if>
-      <if test="description != null" >
-        description,
-      </if>
-      <if test="parentId != null" >
-        parent_id,
-      </if>
-      <if test="insertDate != null" >
-        insert_date,
-      </if>
-      <if test="updateDate != null" >
-        update_date,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="menuUrl != null" >
-        #{menuUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="menuName != null" >
-        #{menuName,jdbcType=VARCHAR},
-      </if>
-      <if test="level != null" >
-        #{level,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="sort != null" >
-        #{sort,jdbcType=VARCHAR},
-      </if>
-      <if test="active != null" >
-        #{active,jdbcType=VARCHAR},
-      </if>
-      <if test="leaf != null" >
-        #{leaf,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="parentId != null" >
-        #{parentId,jdbcType=VARCHAR},
-      </if>
-      <if test="insertDate != null" >
-        #{insertDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateDate != null" >
-        #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <!-- 修改菜单信息 -->
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.Menu" >
-    update sys_menu
-    <set >
-      <if test="menuUrl != null" >
-        menu_url = #{menuUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="menuName != null" >
-        menu_name = #{menuName,jdbcType=VARCHAR},
-      </if>
-      <if test="level != null" >
-        level = #{level,jdbcType=VARCHAR},
-      </if>
-      <if test="state != null" >
-        state = #{state,jdbcType=VARCHAR},
-      </if>
-      <if test="sort != null" >
-        sort = #{sort,jdbcType=VARCHAR},
-      </if>
-      <if test="active != null" >
-        active = #{active,jdbcType=VARCHAR},
-      </if>
-      <if test="leaf != null" >
-        leaf = #{leaf,jdbcType=VARCHAR},
-      </if>
-      <if test="description != null" >
-        description = #{description,jdbcType=VARCHAR},
-      </if>
-      <if test="parentId != null" >
-        parent_id = #{parentId,jdbcType=VARCHAR},
-      </if>
-      <if test="insertDate != null" >
-        insert_date = #{insertDate,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateDate != null" >
-        update_date = #{updateDate,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+
   <!-- 逻辑删除菜单信息 -->
   <update id="deleteMenuById" parameterType="java.lang.String">
   	update sys_menu set active="N" where id=#{menuId};
@@ -161,5 +43,36 @@
       #{menuId}
     </foreach>
     and active = "Y" order by sort
+  </select>
+
+  <select id="selectMenusPage" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from sys_menu
+  </select>
+
+  <sql id="pageSql">
+    <if test="page != null">
+      limit #{page.recordStart},#{page.pageSize}
+    </if>
+  </sql>
+
+  <sql id="conditionSql">
+    <where>
+      <if test="condition!=null">
+        <if test="condition.name!=null and condition.name!=''">
+          and name like concat('%',#{condition.name,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="condition.remark!=null and condition.remark!=''">
+          and remark like concat('%',#{condition.remark,jdbcType=VARCHAR},'%')
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <select id="selectPageCountByCondition" resultType="java.lang.Integer" parameterType="com.zhh.condition.dict.DictTypeCondition">
+    select count(0) from sys_menu <include refid="conditionSql" />
+  </select>
+
+  <select id="selectPageList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from sys_menu <include refid="conditionSql" /> <include refid="pageSql"/>
   </select>
 </mapper>

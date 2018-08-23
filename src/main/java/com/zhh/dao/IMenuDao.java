@@ -23,11 +23,11 @@ public interface IMenuDao {
 
 	int deleteMenu(String menuId);
 
-	List<Menu> selectMenus(@Param("condition")MenuCondition condition, @Param("page")PageUtil page);
+	List<Menu> selectPageList(@Param("condition")MenuCondition condition, @Param("page")PageUtil page);
 
 	List<Menu> selectMenusByIds(@Param("menuIds") List<String> ids);
 
-	int selectMenusCount(@Param("condition")MenuCondition condition);
+	int selectPageCountByCondition(@Param("condition")MenuCondition condition);
 
     Menu getMenuById(String menuId);
 }

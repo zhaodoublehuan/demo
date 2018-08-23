@@ -82,10 +82,10 @@ public class MenuService {
 	 * @param page
 	 * @return
 	 */
-	public List<Menu> selectMenus(MenuCondition condition, PageUtil page) {
+	public List<Menu> selectPageList(MenuCondition condition, PageUtil page) {
 		try {
 			log.info("查询菜单条件======" + JSON.toJSONString(condition));
-			List<Menu> menus = menuDao.selectMenus(condition, page);
+			List<Menu> menus = menuDao.selectPageList(condition, page);
 			log.info("查询出的菜单为======" + JSON.toJSONString(menus));
 			return menus;
 		} catch (Exception e) {
@@ -99,8 +99,8 @@ public class MenuService {
 	 * @param condition
 	 * @return
 	 */
-	public int selectMenusCount(MenuCondition condition) {
-		return menuDao.selectMenusCount(condition);
+	public int selectPageCountByCondition(MenuCondition condition) {
+		return menuDao.selectPageCountByCondition(condition);
 	}
 
 	/**
