@@ -4,6 +4,7 @@ import com.zhh.entity.Menu;
 import com.zhh.entity.UserEntity;
 import com.zhh.exception.ZhhException;
 import com.zhh.service.base.MenuService;
+import com.zhh.service.base.UserRoleService;
 import com.zhh.service.base.UserService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
@@ -28,6 +29,9 @@ public class UserController extends BaseController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private UserRoleService userRoleService;
 
 	/**
 	 * 用户信息初始页面，显示所有用户
@@ -63,12 +67,12 @@ public class UserController extends BaseController {
 
 	/**
 	 * 给用户分配角色
-	 * @param roleId
+	 * @param roleIdList
 	 * @return
 	 */
-	public ReturnResult addUserRole(List<String> roleId,String userId){
+	public ReturnResult addUserRole(List<String> roleIdList,String loginNo){
 		ReturnResult result = new ReturnResult();
-
+		userRoleService.addUserRole(roleIdList,loginNo);
 		return result;
 	}
 	/**

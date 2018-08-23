@@ -19,14 +19,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
-* @ClassName: UserRealm
-* @Description: 自定义realm
-* @author zhh
-* @date 2016-8-12 下午2:53:41
-* 
-*/
-
 @SuppressWarnings("restriction")
 public class UserRealm extends AuthorizingRealm {
 	/**
@@ -41,15 +33,7 @@ public class UserRealm extends AuthorizingRealm {
 	
 	@Autowired
 	private RoleService roleService;
-	
-	/* (非 Javadoc) 
-	* <p>Title: 权限认证方法</p> 
-	* <p>Description: </p> 
-	* @param principals
-	* @return 
-	* @see org.apache.shiro.realm.AuthorizingRealm#doGetAuthorizationInfo(org.apache.shiro.subject.PrincipalCollection) 
-	*/ 
-	
+
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		LOGGER.info("权限验证开始========");
@@ -57,7 +41,7 @@ public class UserRealm extends AuthorizingRealm {
 		String loginNo = (String) principals.getPrimaryPrincipal();
 		LOGGER.info("登录用户名========"+loginNo);
 	    /*获取用户的角色集合*/
-	    List<Role> roleList =  roleService.selectRolesIdByLoginNo(loginNo);
+	    List<Role> roleList =  roleService.selectRolesByLoginNo(loginNo);
 	    LOGGER.info("登录用户角色集合========"+JSON.toJSONString(roleList));
 	    //角色名的集合
 	    Set<String> roles = new HashSet<String>();
@@ -85,15 +69,6 @@ public class UserRealm extends AuthorizingRealm {
 	    LOGGER.info("未登录用户设置权限角色信息到shiro========结束");
 	    return authorizationInfo;
 	}
-
-	/* (非 Javadoc) 
-	* <p>Title: 登录认证方法</p> 
-	* <p>Description: </p> 
-	* @param token
-	* @return
-	* @throws AuthenticationException 
-	* @see org.apache.shiro.realm.AuthenticatingRealm#doGetAuthenticationInfo(org.apache.shiro.authc.AuthenticationToken) 
-	*/ 
 	
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {

@@ -18,34 +18,20 @@ public class UserRoleService {
 	private IUserRoleDao userRoleDao;
 
 	/**
-	 * 添加用户角色对应关系
-	 * @param userRole
-	 * @return
+	 * 添加用户与角色对应关系
+	 * @param roleIdList
+	 * @param loginNo
 	 */
-	public UserRole addUserRole(UserRole userRole) {
-		log.info("添加用户角色信息===="+JSON.toJSONString(userRole));
-		try{
-			return userRoleDao.addUserRole(userRole);
-		}catch (Exception e) {
-			log.error("添加用户角色信息失败====="+e.getMessage());
-			return null;
-		}
-		
+	public void addUserRole(List<String> roleIdList, String loginNo) {
+		userRoleDao.addUserRole(roleIdList,loginNo);
 	}
-
 	/**
 	 * 根据用户账号删除用户所有角色
-	 * @param userRole
+	 * @param loginNo
 	 * @return
 	 */
-	public boolean deleteUserRole(UserRole userRole) {
-		log.info("删除用户角色信息===="+JSON.toJSONString(userRole));
-		try{
-			return userRoleDao.deleteUserRole(userRole);
-		}catch (Exception e) {
-			log.error("删除用户角色信息失败====="+e.getMessage());
-			return false;
-		}
+	public void deleteUserRoleByLoginNo(String loginNo) {
+		userRoleDao.deleteUserRoleByLoginNo(loginNo);
 	}
 
 	/**
@@ -62,5 +48,6 @@ public class UserRoleService {
 			return null;
 		}
 	}
+
 
 }

@@ -84,7 +84,7 @@ public class RoleService {
 	 * @param loginNo
 	 * @return
 	 */
-	public List<Role> selectRolesIdByLoginNo(String loginNo) {
+	public List<Role> selectRolesByLoginNo(String loginNo) {
 		log.info("查询用户所拥有的的角色信息===="+loginNo);
 		try{
 			List<String> roleIds = userRoleService.selectRolesIdByLoginNo(loginNo);
