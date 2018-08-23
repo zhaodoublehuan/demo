@@ -43,14 +43,6 @@ public class UserServiceTest extends BaseTest {
 	}
 
 	@Test
-	public void testDelete() {
-		List<String> ids = new ArrayList<String>();
-		ids.add("ebe461553fc0430cb332bcb7fee2d6d9");
-		int a = userService.delete(ids);
-		System.out.print(a);
-	}
-	
-	@Test
 	public void testSelectUsers() {
 		UserEntity user = new UserEntity();
 		user.setId(UUIDUtils.getUUID());

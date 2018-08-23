@@ -15,13 +15,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
-* @ClassName: MenuService
-* @Description: 菜单管理实现类
-* @author zhh
-* @date 2016-8-13 上午10:33:43
-* 
-*/
 @SuppressWarnings("restriction")
 @Service
 @Log4j

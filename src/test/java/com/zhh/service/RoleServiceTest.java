@@ -34,9 +34,4 @@ public class RoleServiceTest extends BaseTest{
 		roleService.deleteRole("63ffc310d76d4712b541f8cd94573a40");
 	}
 
-	@Test
-	public void testTelectRolesByLoginNo(){
-		roleService.selectRolesIdByLoginNo("zhh");
-	}
-
 }
