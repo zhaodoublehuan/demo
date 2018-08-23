@@ -28,4 +28,6 @@ public interface IMenuDao {
 	List<Menu> selectMenusByIds(@Param("menuIds") List<String> ids);
 
 	int selectMenusCount(@Param("condition")MenuCondition condition);
+
+    Menu getMenuById(String menuId);
 }

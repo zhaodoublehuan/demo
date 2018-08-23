@@ -22,7 +22,10 @@
     id, menu_url, menu_name, icon_class, level, state, sort, active, leaf, description, parent_id,
     insert_date, update_date
   </sql>
-  
+
+  <select id="getMenuById" parameterType="java.lang.String">
+    select  <include refid="Base_Column_List" /> from sys_menu where id = #{menuId}
+  </select>
   <select id="getChildrenMenus" parameterType="java.lang.String" resultMap="BaseResultMap">
       select * from sys_menu where parent_id = #{id} and active="Y" order by sort
   </select>

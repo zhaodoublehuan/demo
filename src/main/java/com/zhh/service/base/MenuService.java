@@ -142,4 +142,12 @@ public class MenuService {
 		return menuDao.selectMenusByIds(menuIds);
 	}
 
+	/**
+	 * 根据id获取菜单信息
+	 * @param menuId
+	 * @return
+	 */
+    public Menu getMenuById(String menuId) {
+		return menuDao.getMenuById(menuId);
+    }
 }

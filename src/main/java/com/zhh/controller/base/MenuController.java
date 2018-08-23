@@ -31,7 +31,9 @@ public class MenuController extends BaseController {
 	private MenuService menuService;
 
 	/**
-	 * 用户信息初始页面，显示所有用户
+	 * 菜单列表
+	 * @param model
+	 * @return
 	 */
 	@RequestMapping("/menuList")
 	@RequiresRoles("admin")
@@ -53,6 +55,33 @@ public class MenuController extends BaseController {
 		result.setStatus(0);
 		result.setMsg("添加菜单成功");
 		return result;
+	}
+
+	/**
+	 * 修改菜单信息
+	 * @param menu
+	 * @return
+	 * @throws ZhhException
+	 */
+	@RequestMapping("updateMenu")
+	@ResponseBody
+	public ReturnResult updateMenu(Menu menu) throws ZhhException {
+		ReturnResult result = new ReturnResult();
+		menuService.updateMenu(menu);
+		result.setStatus(0);
+		result.setMsg("添加菜单成功");
+		return result;
+	}
+
+	/**
+	 * 通过menuid获取菜单的全部信息
+	 * @param menuId
+	 * @return
+	 */
+	@RequestMapping("getMenuById")
+	@ResponseBody
+	public Menu getMenuById(String menuId){
+		return menuService.getMenuById(menuId);
 	}
 
 	/**
