@@ -15,49 +15,49 @@
 	                  <label class="col-sm-2 control-label">菜单名称</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="loginNo" autocomplete="off" >
+	                    <input type="text" class="form-control" name="menuName" autocomplete="off" >
 	                  </div>
 	                </div>
 	                <div class="form-group">
 	                  <label class="col-sm-2 control-label">菜单地址</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="userName" autocomplete="off">
+	                    <input type="text" class="form-control" name="menuUrl" autocomplete="off">
 	                  </div>
 	                </div>
 	                <div class="form-group">
 	                  <label class="col-sm-2 control-label">菜单描述</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="password" autocomplete="off" >
+	                    <input type="text" class="form-control" name="description" autocomplete="off" >
 	                  </div>
 	                </div>
 					 <div class="form-group">
 						 <label class="col-sm-2 control-label">菜单样式</label>
 
 						 <div class="col-sm-10">
-							 <input type="text" class="form-control" name="mobile" autocomplete="off">
+							 <input type="text" class="form-control" name="iconClass" autocomplete="off">
 						 </div>
 					 </div>
 					 <div class="form-group">
 						 <label class="col-sm-2 control-label">父级菜单</label>
 
 						 <div class="col-sm-10">
-							 <input type="text" class="form-control" name="mobile" autocomplete="off">
+							 <input type="text" class="form-control" name="parentId" autocomplete="off">
 						 </div>
 					 </div>
 					 <div class="form-group">
 						 <label class="col-sm-2 control-label">菜单顺序</label>
 
 						 <div class="col-sm-10">
-							 <input type="text" class="form-control" name="mobile" autocomplete="off">
+							 <input type="text" class="form-control" name="sort" autocomplete="off">
 						 </div>
 					 </div>
 					 <div class="form-group">
 						 <label class="col-sm-2 control-label">是否启用</label>
 
 						 <div class="col-sm-10">
-							 <select>
+							 <select name="active">
 								 <option value="Y">启用</option>
 								 <option value="N">禁用</option>
 							 </select>

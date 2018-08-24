@@ -17,7 +17,7 @@ import org.apache.ibatis.annotations.Param;
 
 public interface IMenuDao {
 
-	Menu addMenu(Menu menu);
+	void addMenu(Menu menu);
 	
 	Menu updateMenu(Menu menu);
 

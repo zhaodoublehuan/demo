@@ -1,5 +1,6 @@
 package com.zhh.controller.base;
 
+import com.alibaba.fastjson.JSON;
 import com.zhh.entity.base.Menu;
 import com.zhh.exception.ZhhException;
 import com.zhh.service.base.MenuService;
@@ -51,6 +52,7 @@ public class MenuController extends BaseController {
 	@ResponseBody
 	public ReturnResult addMenu(Menu menu) throws ZhhException {
 		ReturnResult result = new ReturnResult();
+		log.info(JSON.toJSONString(menu));
 		menuService.addMenu(menu);
 		result.setStatus(0);
 		result.setMsg("添加菜单成功");

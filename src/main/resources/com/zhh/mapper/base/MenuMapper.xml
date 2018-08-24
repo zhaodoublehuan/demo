@@ -31,10 +31,24 @@
       select * from sys_menu where parent_id = #{id} and active="Y" order by sort
   </select>
 
+  <insert id="addMenu" parameterType="com.zhh.entity.base.Menu" >
+    insert into sys_menu (id, menu_url, menu_name,
+      icon_class, level, state,
+      sort, active, leaf,
+      description, parent_id, insert_date,
+      update_date)
+    values (#{id,jdbcType=VARCHAR}, #{menuUrl,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR},
+      #{iconClass,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR},
+      #{sort,jdbcType=VARCHAR}, #{active,jdbcType=VARCHAR}, #{leaf,jdbcType=VARCHAR},
+      #{description,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR}, #{insertDate,jdbcType=TIMESTAMP},
+      #{updateDate,jdbcType=TIMESTAMP})
+  </insert>
+
   <!-- 逻辑删除菜单信息 -->
   <update id="deleteMenuById" parameterType="java.lang.String">
   	update sys_menu set active="N" where id=#{menuId};
   </update>
+
   <!-- 根据查询条件查询对应的菜单集合 -->
   <select id="selectMenusByIds" resultMap="BaseResultMap" parameterType="java.util.List">
     select * from  sys_menu  where id in

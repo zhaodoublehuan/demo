@@ -32,12 +32,12 @@ public class MenuService {
 	 * @param menu
 	 * @return
 	 */
-	public Menu addMenu(Menu menu) throws ZhhException {
+	public void addMenu(Menu menu) throws ZhhException {
 		log.info("添加菜单信息===="+JSON.toJSONString(menu));
 		try{
 			menu.setId(UUIDUtils.getUUID());
 			menu.setInsertDate(new Date());
-			return menuDao.addMenu(menu);			
+			menuDao.addMenu(menu);
 		}catch (Exception e) {
 			log.error("添加菜单信息失败==="+e.getMessage());
 			throw new ZhhException("添加菜单失败");

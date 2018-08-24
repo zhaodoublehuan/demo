@@ -69,6 +69,7 @@ function unLockMenu(id) {
     })
 }
 function addMenuSave(){
+    $('#addMenuModal .modal').modal('hide');
 	var pjUrl = getProjectUrl();
 	var menu={};
 	$.ajax({
