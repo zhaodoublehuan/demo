@@ -12,6 +12,62 @@ function addMenuShow(){
 	.removeAttr('selected');
 	$('#addMenuModal .modal').modal('show');
 }
+
+function lockMenu(id) {
+    $.confirm({
+        title: '确认信息',
+        content: '确定要锁定该菜单?',
+        confirmButton: '锁定',
+        confirmButtonClass:"btn-danger",
+        cancelButtonClass: 'btn-info',
+        cancelButton: '取消',
+        confirm: function () {
+            var pjUrl = getProjectUrl();
+            $.ajax({
+                "url":pjUrl+"/product/deleteProduct",
+                "type":"GET",
+                "dataType": "json",
+                "contentType": "application/json",
+                "data":{"id":parseInt(id)},
+                success:function(data){
+                    alert(data.msg);
+                    product_table.ajax.reload();
+                },
+                error:function(){
+                    alert("系统异常，请联系系统管理员");
+                }
+            })
+        }
+    })
+}
+
+function unLockMenu(id) {
+    $.confirm({
+        title: '确认信息',
+        content: '确定要解锁此菜单?',
+        confirmButton: '解锁',
+        confirmButtonClass:"btn-danger",
+        cancelButtonClass: 'btn-info',
+        cancelButton: '取消',
+        confirm: function () {
+            var pjUrl = getProjectUrl();
+            $.ajax({
+                "url":pjUrl+"/product/deleteProduct",
+                "type":"GET",
+                "dataType": "json",
+                "contentType": "application/json",
+                "data":{"id":parseInt(id)},
+                success:function(data){
+                    alert(data.msg);
+                    product_table.ajax.reload();
+                },
+                error:function(){
+                    alert("系统异常，请联系系统管理员");
+                }
+            })
+        }
+    })
+}
 function addMenuSave(){
 	var pjUrl = getProjectUrl();
 	var menu={};
@@ -56,14 +112,22 @@ $(function () {
             { "data": "iconClass"},
             { "data": "parentId" },
             { "data": "sort"},
+            { "data": "active"},
             { "data": "" }
 		  ],
 		"columnDefs":[
 			{
-			 "targets":6,
+                "targets":6,
+                "render":function( data, type, full, meta){
+                	return data=="Y" ? "启用" : "禁用";
+                }
+			},
+			{
+			 "targets":7,
 			 "render":function( data, type, full, meta){
-			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editMenu()"><i class="fa fa-fw fa-edit"></i>编辑</button>';
-			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delMenu(this)"><i class="fa fa-fw fa-remove"></i>删除</button>';
+			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editMenu()"><i class="fa fa-fw fa-edit"></i></button>';
+                 btnHtml += '<button class="btn btn-info btn-sm" onclick="lockMenu(this)"><i class="fa fa-fw fa-lock"></i></button>';
+                 btnHtml += '<button class="btn btn-warning btn-sm" onclick="unLockMenu(this)"><i class="fa fa-fw fa-unlock"></i></button>';
 			 	return btnHtml;
 			 }
 			}

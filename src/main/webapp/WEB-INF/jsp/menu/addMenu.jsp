@@ -7,36 +7,60 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">添加出菜单信息</h4>
+                <h4 class="modal-title">新增菜单</h4>
               </div>
               <div class="modal-body">
 	             <form class="form-horizontal" id="addMenuForm">
 	             	<div class="form-group">
-	                  <label class="col-sm-2 control-label">登录账号</label>
+	                  <label class="col-sm-2 control-label">菜单名称</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="loginNo" autocomplete="off" placeholder="登录账号">
+	                    <input type="text" class="form-control" name="loginNo" autocomplete="off" >
 	                  </div>
 	                </div>
 	                <div class="form-group">
-	                  <label class="col-sm-2 control-label">姓名</label>
+	                  <label class="col-sm-2 control-label">菜单地址</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="text" class="form-control" name="userName" autocomplete="off" placeholder="用户姓名">
+	                    <input type="text" class="form-control" name="userName" autocomplete="off">
 	                  </div>
 	                </div>
 	                <div class="form-group">
-	                  <label class="col-sm-2 control-label">密码</label>
+	                  <label class="col-sm-2 control-label">菜单描述</label>
 	
 	                  <div class="col-sm-10">
-	                    <input type="password" class="form-control" name="password" autocomplete="off" placeholder="登录密码">
+	                    <input type="text" class="form-control" name="password" autocomplete="off" >
 	                  </div>
 	                </div>
 					 <div class="form-group">
-						 <label class="col-sm-2 control-label">手机号码</label>
+						 <label class="col-sm-2 control-label">菜单样式</label>
 
 						 <div class="col-sm-10">
-							 <input type="text" class="form-control" name="mobile" autocomplete="off" placeholder="手机号码">
+							 <input type="text" class="form-control" name="mobile" autocomplete="off">
+						 </div>
+					 </div>
+					 <div class="form-group">
+						 <label class="col-sm-2 control-label">父级菜单</label>
+
+						 <div class="col-sm-10">
+							 <input type="text" class="form-control" name="mobile" autocomplete="off">
+						 </div>
+					 </div>
+					 <div class="form-group">
+						 <label class="col-sm-2 control-label">菜单顺序</label>
+
+						 <div class="col-sm-10">
+							 <input type="text" class="form-control" name="mobile" autocomplete="off">
+						 </div>
+					 </div>
+					 <div class="form-group">
+						 <label class="col-sm-2 control-label">是否启用</label>
+
+						 <div class="col-sm-10">
+							 <select>
+								 <option value="Y">启用</option>
+								 <option value="N">禁用</option>
+							 </select>
 						 </div>
 					 </div>
 	            </form>
