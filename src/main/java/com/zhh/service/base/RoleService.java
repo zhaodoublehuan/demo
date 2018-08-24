@@ -30,7 +30,7 @@ public class RoleService {
 	 * @param role
 	 * @return
 	 */
-	public Role addRole(Role role) {
+	public void addRole(Role role) {
 		log.info("添加角色信息===="+JSON.toJSONString(role));
 		try{
 			Date now = new Date();
@@ -38,10 +38,9 @@ public class RoleService {
 			role.setInsertDate(now);
 			role.setActive(CommonParams.ACTIVE);
 			role.setUpdateDate(now);
-			return roleDao.addRole(role);
+			roleDao.addRole(role);
 		}catch (Exception e) {
 			log.error("添加角色失败===="+e.getMessage());
-			return null;
 		}
 		
 	}
@@ -51,15 +50,14 @@ public class RoleService {
 	 * @param role
 	 * @return
 	 */
-	public Role updateRole(Role role) {
+	public void updateRole(Role role) {
 		log.info("修改角色信息===="+JSON.toJSONString(role));
 		try{
 			Date now = new Date();
 			role.setUpdateDate(now);
-			return roleDao.updateRole(role);
+			roleDao.updateRole(role);
 		}catch (Exception e) {
 			log.error("修改角色失败===="+e.getMessage());
-			return null;
 		}
 		
 	}
@@ -107,7 +105,7 @@ public class RoleService {
 	 * @return
 	 */
 	public List<Role> selectPageList(RoleCondition condition, PageUtil page) {
-		return null;
+		return roleDao.selectPageList(condition,page);
 	}
 
 	/**
@@ -116,6 +114,6 @@ public class RoleService {
 	 * @return
 	 */
 	public int selectPageCountByCondition(RoleCondition condition) {
-		return 0;
+		return roleDao.selectPageCountByCondition(condition);
 	}
 }

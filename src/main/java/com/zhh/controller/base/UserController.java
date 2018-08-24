@@ -35,7 +35,7 @@ public class UserController extends BaseController {
 	/**
 	 * 用户信息初始页面，显示所有用户
 	*/ 
-	@RequestMapping("/userList")
+	@RequestMapping("/index")
 	@RequiresRoles("admin")
 	public String userIndex(Model model){
 		List<Menu> menuList = getUserMenus();

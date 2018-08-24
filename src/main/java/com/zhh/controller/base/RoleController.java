@@ -1,11 +1,14 @@
 package com.zhh.controller.base;
 
+import com.zhh.entity.base.Menu;
 import com.zhh.entity.base.Role;
 import com.zhh.service.base.RoleService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,10 +19,23 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/role")
-public class RoleController {
+public class RoleController extends BaseController {
 
 	@Autowired
 	private RoleService roleService;
+
+	/**
+	 * 菜单列表
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/index")
+	@RequiresRoles("admin")
+	public String menuIndex(Model model){
+		List<Menu> menuList = getUserMenus();
+		model.addAttribute("menuList", menuList);
+		return "role/roleList";
+	}
 	
 	/**
 	 * 添加角色信息
@@ -27,9 +43,8 @@ public class RoleController {
 	 */
 	@RequestMapping(value="/addRole", method = RequestMethod.POST)
 	@ResponseBody
-	public Role addRole(Role role){
-		Role roleEntity = roleService.addRole(role);
-		return roleEntity;
+	public void addRole(Role role){
+		roleService.addRole(role);
 	}
 
 	/**

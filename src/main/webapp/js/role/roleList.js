@@ -67,6 +67,7 @@ $(function () {
 			 "render":function( data, type, full, meta){
 			 	var btnHtml = '<button class="btn btn-success btn-xs" onclick="editRole()"><i class="fa fa-fw fa-edit"></i></button>';
 			 	btnHtml += '<button class="btn btn-danger btn-xs" onclick="delRole(this)"><i class="fa fa-fw fa-remove"></i></button>';
+                 btnHtml += '<button class="btn btn-info btn-xs" onclick="delRole(this)"><i class="fa fa-fw fa-th-list"></i></button>';
 			 	return btnHtml;
 			 }
 			}

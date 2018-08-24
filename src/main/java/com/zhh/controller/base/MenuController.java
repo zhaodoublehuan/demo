@@ -36,7 +36,7 @@ public class MenuController extends BaseController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping("/menuList")
+	@RequestMapping("/index")
 	@RequiresRoles("admin")
 	public String menuIndex(Model model){
 		List<Menu> menuList = getUserMenus();

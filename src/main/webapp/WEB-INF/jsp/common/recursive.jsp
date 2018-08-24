@@ -8,7 +8,7 @@
 <c:if test="${not empty menuList}">
     <c:forEach items="${menuList}" var="item">
         <c:if test="${item.childrenMenus==null || fn:length(item.childrenMenus) == 0}">
-            <li><a href="${basePath}${item.menuUrl}"><i class="${item.iconClass}"></i> <span>${item.menuName}</span></a>
+            <li><a href="${basePath}${item.menuUrl}"><i class="fa fa-fw ${item.iconClass}"></i> <span>${item.menuName}</span></a>
             </li>
         </c:if>
         <c:if test="${item.childrenMenus!=null && fn:length(item.childrenMenus) > 0}">

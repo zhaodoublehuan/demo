@@ -95,4 +95,43 @@
       #{roleId}
     </foreach>
   </select>
+
+
+  <sql id="pageSql">
+    <if test="page != null">
+      limit #{page.recordStart},#{page.pageSize}
+    </if>
+  </sql>
+
+  <sql id="conditionSql">
+    <where>
+      <if test="condition!=null">
+        <if test="condition.userName != null" >
+          and user_name = #{condition.userName,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.loginNo != null" >
+          and login_no = #{condition.loginNo,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.mobile != null" >
+          and  mobile = #{condition.mobile,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.email != null" >
+          and  email = #{condition.email,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.active != null" >
+          and  email = #{condition.active,jdbcType=VARCHAR}
+        </if>
+      </if>
+    </where>
+  </sql>
+
+  <!-- 查询用户数量 -->
+  <select id="selectPageCountByCondition" resultType="java.lang.Integer" parameterType="com.zhh.condition.user.UserCondition">
+    select count(0) from sys_role <include refid="conditionSql" />
+  </select>
+
+  <!-- 根据条件查询用户集合 -->
+  <select id="selectPageList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from sys_role <include refid="conditionSql" /> <include refid="pageSql"/>
+  </select>
 </mapper>

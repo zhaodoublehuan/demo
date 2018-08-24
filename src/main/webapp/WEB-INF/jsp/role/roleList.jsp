@@ -28,7 +28,7 @@
                 <section class="col-lg-12 connectedSortable">
                     <div class="box box-info">
                         <div class="box-header">
-                            <button class="btn btn-success" onclick="addRoleShow()">新增用户</button>
+                            <button class="btn btn-success" onclick="addRoleShow()">新增角色</button>
                         </div>
                         <div class="box-body">
                             <table id="role_table" class="table table-bordered table-hover">

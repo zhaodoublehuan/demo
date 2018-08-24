@@ -2,7 +2,9 @@ package com.zhh.dao;
 
 import java.util.List;
 
+import com.zhh.condition.role.RoleCondition;
 import com.zhh.entity.base.Role;
+import com.zhh.util.PageUtil;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -15,47 +17,15 @@ import org.apache.ibatis.annotations.Param;
 
 public interface IRoleDao {
 	
-	/** 
-	* @Title: add 
-	* @Description: 添加新的角色信息
-	* @param @param role
-	* @param @return    设定文件 
-	* @return Role    返回类型 
-	* @throws 
-	*/ 
+	int addRole(Role role);
 	
-	Role addRole(Role role);
-	
-	/** 
-	* @Title: update 
-	* @Description: 修改角色信息
-	* @param @param role
-	* @param @return    设定文件 
-	* @return Role    返回类型 
-	* @throws 
-	*/ 
-	
-	Role updateRole(Role role);
-	
-	/** 
-	* @Title: delete 
-	* @Description: 删除角色信息 
-	* @param @param role
-	* @param @return    设定文件 
-	* @return Role    返回类型 
-	* @throws 
-	*/ 
-	
-	boolean deleteRole(String roleId);
+	int updateRole(Role role);
 
-	/** 
-	* @Title: getRolesByRoleIds 
-	* @Description: 根据角色id查询角色信息 
-	* @param @param roleIds
-	* @param @return    设定文件 
-	* @return List<Role>    返回类型 
-	* @throws 
-	*/ 
+	boolean deleteRole(String roleId);
 	
 	List<Role> getRolesByRoleIds(@Param("roleIds") List<String> roleIds);
+
+    List<Role> selectPageList(@Param("condition") RoleCondition condition,@Param("page") PageUtil page);
+
+	int selectPageCountByCondition(@Param("condition") RoleCondition condition);
 }
