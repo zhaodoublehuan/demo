@@ -53,13 +53,13 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                       <%-- <div class="form-group">
                             <label class="col-sm-2 control-label">操作时间</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" autocomplete="off" name="inoutDate"
                                        placeholder="操作时间">
                             </div>
-                        </div>
+                        </div>--%>
                     </form>
                 </div>
                 <div class="modal-footer">

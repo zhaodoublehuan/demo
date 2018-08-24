@@ -6,6 +6,7 @@ import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -23,6 +24,7 @@ public class ProductRecordService {
     }
 
     public int insert(ProductRecord record) {
+        record.setInoutDate(new Date());
         return productRecordDao.insert(record);
     }
 
