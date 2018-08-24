@@ -126,9 +126,9 @@ $(function () {
 			{
 			 "targets":7,
 			 "render":function( data, type, full, meta){
-			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editMenu()"><i class="fa fa-fw fa-edit"></i></button>';
-                 btnHtml += '<button class="btn btn-info btn-sm" onclick="lockMenu(this)"><i class="fa fa-fw fa-lock"></i></button>';
-                 btnHtml += '<button class="btn btn-warning btn-sm" onclick="unLockMenu(this)"><i class="fa fa-fw fa-unlock"></i></button>';
+			 	var btnHtml = '<button class="btn btn-success btn-xs" onclick="editMenu()"><i class="fa fa-fw fa-edit"></i></button>';
+                 btnHtml += '<button class="btn btn-info btn-xs" onclick="lockMenu(this)"><i class="fa fa-fw fa-lock"></i></button>';
+                 btnHtml += '<button class="btn btn-warning btn-xs" onclick="unLockMenu(this)"><i class="fa fa-fw fa-unlock"></i></button>';
 			 	return btnHtml;
 			 }
 			}

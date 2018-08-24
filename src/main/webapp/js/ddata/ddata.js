@@ -201,8 +201,8 @@ $(function () {
 			{
 			 "targets":4,
 			 "render":function( data, type, row, meta){
-			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editRecord('+row.id+')"><i class="fa fa-fw fa-edit"></i>编辑</button>';
-			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delRecord('+row.id+')"><i class="fa fa-fw fa-remove"></i>删除</button>';
+			 	var btnHtml = '<button class="btn btn-success btn-xs" onclick="editRecord('+row.id+')"><i class="fa fa-fw fa-edit"></i></button>';
+			 	btnHtml += '<button class="btn btn-danger btn-xs" onclick="delRecord('+row.id+')"><i class="fa fa-fw fa-remove"></i></button>';
 			 	return btnHtml;
 			 }
 			}

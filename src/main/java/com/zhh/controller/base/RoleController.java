@@ -46,13 +46,13 @@ public class RoleController {
 		/*转换需要的参数*/
 		PageUtil page = PageUtil.getPageParams(aoData);
 		/*查询总条数*/
-		int count = roleService.selectRolesCount(null);
+		int count = roleService.selectPageCountByCondition(null);
 
 		List<Role> userList = new ArrayList<Role>();
 
 		if(count>0){
 			/*查询符合条件的用户*/
-			userList = roleService.selectRolePage(null,page);
+			userList = roleService.selectPageList(null,page);
 		}
 		return new PageReturnParam(page.getsEcho(),count,userList);
 	}

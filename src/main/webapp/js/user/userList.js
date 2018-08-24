@@ -125,9 +125,10 @@ $(function () {
 			{
 			 "targets":6,
 			 "render":function( data, type, full, meta){
-			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser()"><i class="fa fa-fw fa-edit"></i></button>';
-                 btnHtml += '<button class="btn btn-info btn-sm" onclick="lockUser(this)"><i class="fa fa-fw fa-lock"></i></button>';
-                 btnHtml += '<button class="btn btn-warning btn-sm" onclick="unLockUser(this)"><i class="fa fa-fw fa-unlock"></i></button>';
+			 	var btnHtml = '<button class="btn btn-success btn-xs" onclick="editUser()"><i class="fa fa-fw fa-edit"></i></button>';
+                 btnHtml += '<button class="btn bg-orange btn-xs" onclick="editUser()"><i class="fa fa-fw  fa-shield"></i></button>';
+                 btnHtml += '<button class="btn btn-info btn-xs" onclick="lockUser(this)"><i class="fa fa-fw fa-lock"></i></button>';
+                 btnHtml += '<button class="btn btn-warning btn-xs" onclick="unLockUser(this)"><i class="fa fa-fw fa-unlock"></i></button>';
 			 	return btnHtml;
 			 }
 			}

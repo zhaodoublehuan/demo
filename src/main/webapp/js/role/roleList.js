@@ -1,28 +1,27 @@
-function editUser(){
-	 $('#editUserModal .modal').modal('show');
+function editRole(){
+	 $('#editRoleModal .modal').modal('show');
 }
 /**
  * 点击添加用户，展示添加modal
  */
-function addUserShow(){
-	$(':input','#addUserModal form')
+function addRoleShow(){
+	$(':input','#addRoleModal form')
 	.not(':button,:submit,:reset')
 	.val('')
 	.removeAttr('checked')
 	.removeAttr('selected');
-	$('#addUserModal .modal').modal('show');
+	$('#addRoleModal .modal').modal('show');
 }
-function addUserSave(){
+function addRoleSave(){
 	var pjUrl = getProjectUrl();
-	var user={};
 	$.ajax({
-		"url":pjUrl+"/user/addUser",
+		"url":pjUrl+"/role/addRole",
 		"type":"POST",
 		"dataType": "json",
-		"data":$("#addUserForm").serialize(),
+		"data":$("#addRoleForm").serialize(),
 		success:function(data){
 			alert(data.msg);
-            user_table.ajax.reload();
+            role_table.ajax.reload();
 		},
 		error:function(){
 			alert("系统异常，请联系系统管理员");
@@ -43,32 +42,36 @@ function getProjectUrl(){
 }
 $(function () {
 	var pjUrl = getProjectUrl();
-    user_table = $("#user_table").DataTable({
+    role_table = $("#role_table").DataTable({
     	"searching":false,
     	"ordering":false,
     	"pagingType":"full_numbers",
     	"lengthChange":false,
     	"bServerSide": true, 
     	"columns": [
-		    { "data": "loginNo" },
-		    { "data": "userName"},
-            { "data": "userAge" },
-            { "data": "userSex"},
-            { "data": "mobile" },
-            { "data": "email"},
+		    { "data": "name" },
+		    { "data": "code"},
+            { "data": "description" },
+            { "data": "active"},
 		    { "data": "" }
 		  ],
 		"columnDefs":[
+            {
+                "targets":3,
+                "render":function (data, type, full, meta) {
+                    return data=='Y' ? '启用' : '禁用';
+                }
+            },
 			{
-			 "targets":6,
+			 "targets":4,
 			 "render":function( data, type, full, meta){
-			 	var btnHtml = '<button class="btn btn-success btn-sm" onclick="editUser()"><i class="fa fa-fw fa-edit"></i>编辑</button>';
-			 	btnHtml += '<button class="btn btn-danger btn-sm" onclick="delUser(this)"><i class="fa fa-fw fa-remove"></i>删除</button>';
+			 	var btnHtml = '<button class="btn btn-success btn-xs" onclick="editRole()"><i class="fa fa-fw fa-edit"></i></button>';
+			 	btnHtml += '<button class="btn btn-danger btn-xs" onclick="delRole(this)"><i class="fa fa-fw fa-remove"></i></button>';
 			 	return btnHtml;
 			 }
 			}
 		],
-    	"sAjaxSource":pjUrl+"/user/userPage",
+    	"sAjaxSource":pjUrl+"/role/rolePage",
     	"fnServerData":function(sSource, aoData, fnCallback){
     		$.ajax( {    
     	        "contentType": "application/json",    

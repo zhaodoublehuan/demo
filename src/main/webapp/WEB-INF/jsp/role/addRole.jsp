@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <div id="addUserModal">
+  <div id="addRoleModal">
         <div class="modal">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -10,7 +10,7 @@
                 <h4 class="modal-title">添加用户信息</h4>
               </div>
               <div class="modal-body">
-	             <form class="form-horizontal" id="addUserForm">
+	             <form class="form-horizontal" id="addRoleForm">
 	             	<div class="form-group">
 	                  <label class="col-sm-2 control-label">登录账号</label>
 	
@@ -43,7 +43,7 @@
            	  </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" onclick="addUserSave()">保存</button>
+                <button type="button" class="btn btn-primary" onclick="addRoleSave()">保存</button>
               </div>
             </div>
           </div>

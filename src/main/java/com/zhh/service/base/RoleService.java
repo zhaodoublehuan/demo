@@ -106,7 +106,7 @@ public class RoleService {
 	 * @param page
 	 * @return
 	 */
-	public List<Role> selectRolePage(RoleCondition condition, PageUtil page) {
+	public List<Role> selectPageList(RoleCondition condition, PageUtil page) {
 		return null;
 	}
 
@@ -115,7 +115,7 @@ public class RoleService {
 	 * @param condition
 	 * @return
 	 */
-	public int selectRolesCount(RoleCondition condition) {
+	public int selectPageCountByCondition(RoleCondition condition) {
 		return 0;
 	}
 }
