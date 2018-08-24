@@ -85,7 +85,6 @@ $(function () {
         "dataType": "json",
         "data":{"type":7},
         success:function(data){
-            debugger
             var pieChartCanvas = $("#jhzhanbi").get(0).getContext("2d");
             var pieChart = new Chart(pieChartCanvas);
             var PieData = [];
