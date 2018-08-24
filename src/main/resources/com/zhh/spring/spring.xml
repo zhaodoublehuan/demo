@@ -35,7 +35,7 @@
    		<!-- mybatis 配置文件加载 -->
    		<property name="configLocation" value="classpath:com/zhh/config/mybatis.xml"></property>
    		<!-- 加载mapper文件 -->
-   		<property name="mapperLocations" value="classpath:com/zhh/mapper/*.xml"></property>
+   		<property name="mapperLocations" value="classpath:com/zhh/mapper/*/*.xml"></property>
    	</bean>
 	<!--自动生成dao实现层-->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

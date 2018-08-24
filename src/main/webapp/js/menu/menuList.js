@@ -50,8 +50,13 @@ $(function () {
     	"lengthChange":false,
     	"bServerSide": true, 
     	"columns": [
-
-		    { "data": "" }
+            { "data": "menuName" },
+            { "data": "menuUrl"},
+            { "data": "description" },
+            { "data": "iconClass"},
+            { "data": "parentId" },
+            { "data": "sort"},
+            { "data": "" }
 		  ],
 		"columnDefs":[
 			{

@@ -3,7 +3,7 @@ package com.zhh.service.dict;
 import com.zhh.bean.dict.DictDataBean;
 import com.zhh.condition.dict.DictDataCondition;
 import com.zhh.dao.IDictDataDao;
-import com.zhh.entity.DictData;
+import com.zhh.entity.dict.DictData;
 import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

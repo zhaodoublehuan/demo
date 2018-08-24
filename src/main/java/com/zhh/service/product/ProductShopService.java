@@ -1,7 +1,7 @@
 package com.zhh.service.product;
 
 import com.zhh.dao.IProductShopDao;
-import com.zhh.entity.ProductShop;
+import com.zhh.entity.product.ProductShop;
 import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

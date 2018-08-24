@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhh.dao.IUserRoleDao">
-    <resultMap id="BaseResultMap" type="com.zhh.entity.UserRole">
+    <resultMap id="BaseResultMap" type="com.zhh.entity.base.UserRole">
         <result column="login_no" property="loginNo" jdbcType="VARCHAR"/>
         <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
         <result column="insert_date" property="insertDate" jdbcType="TIMESTAMP"/>

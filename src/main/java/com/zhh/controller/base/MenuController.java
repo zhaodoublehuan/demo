@@ -1,6 +1,6 @@
 package com.zhh.controller.base;
 
-import com.zhh.entity.Menu;
+import com.zhh.entity.base.Menu;
 import com.zhh.exception.ZhhException;
 import com.zhh.service.base.MenuService;
 import com.zhh.service.base.UserService;

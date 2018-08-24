@@ -3,7 +3,7 @@ package com.zhh.dao;
 import java.util.List;
 
 import com.zhh.condition.menu.MenuCondition;
-import com.zhh.entity.Menu;
+import com.zhh.entity.base.Menu;
 import com.zhh.util.PageUtil;
 import org.apache.ibatis.annotations.Param;
 

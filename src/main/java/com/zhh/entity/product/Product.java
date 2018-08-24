@@ -1,19 +1,23 @@
-package com.zhh.entity;
+package com.zhh.entity.product;
 
+import com.zhh.entity.dict.DictData;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+
 @Getter
 @Setter
-public class ProductShop {
+public class Product {
     private Integer id;
 
     private String name;
 
     private String remark;
 
-    private DictData shopType;
+    private DictData unitData;
+
+    private DictData productType;
 
     private Date insertDate;
 

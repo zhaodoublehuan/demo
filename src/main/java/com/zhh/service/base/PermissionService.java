@@ -5,7 +5,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.zhh.dao.IPermissionDao;
-import com.zhh.entity.Permission;
+import com.zhh.entity.base.Permission;
 
 /**
 * @ClassName: PermissionService

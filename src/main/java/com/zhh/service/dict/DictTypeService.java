@@ -2,7 +2,7 @@ package com.zhh.service.dict;
 
 import com.zhh.condition.dict.DictTypeCondition;
 import com.zhh.dao.IDictTypeDao;
-import com.zhh.entity.DictType;
+import com.zhh.entity.dict.DictType;
 import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

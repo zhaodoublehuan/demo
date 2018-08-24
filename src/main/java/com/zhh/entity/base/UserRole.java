@@ -1,4 +1,4 @@
-package com.zhh.entity;
+package com.zhh.entity.base;
 
 import lombok.Getter;
 import lombok.Setter;

@@ -3,7 +3,7 @@ package com.zhh.service.base;
 import com.alibaba.fastjson.JSON;
 import com.zhh.condition.user.UserCondition;
 import com.zhh.dao.IUserDao;
-import com.zhh.entity.UserEntity;
+import com.zhh.entity.base.UserEntity;
 import com.zhh.exception.ZhhException;
 import com.zhh.util.CommonParams;
 import com.zhh.util.PageUtil;
@@ -77,7 +77,7 @@ public class UserService {
 	 * @return
 	 */
 	public List<UserEntity> selectUsers(UserCondition condition, PageUtil page) {
-		return userDao.selectUsers(condition,page);
+		return userDao.selectPageList(condition,page);
 	}
 
 	/**
@@ -93,11 +93,11 @@ public class UserService {
 
 	/**
 	 * 查询用户数量
-	 * @param user
+	 * @param conditio
 	 * @return
 	 */
-	public int selectUsersCount(UserEntity user) {
-		return userDao.selectUsersCount(user);
+	public int selectPageCountByCondition(UserCondition conditio) {
+		return userDao.selectPageCountByCondition(conditio);
 	}
 
 	/**

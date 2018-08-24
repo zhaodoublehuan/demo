@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhh.dao.IRoleMenuDao" >
-  <resultMap id="BaseResultMap" type="com.zhh.entity.RoleMenu" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.base.RoleMenu" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="menu_id" property="menuId" jdbcType="VARCHAR" />
     <result column="role_id" property="roleId" jdbcType="VARCHAR" />
@@ -20,7 +20,7 @@
     delete from sys_role_menu
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.zhh.entity.RoleMenu" >
+  <insert id="insert" parameterType="com.zhh.entity.base.RoleMenu" >
     insert into sys_role_menu (menu_id, role_id,insert_date
       )
     values ( #{menuId,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{insertDate,jdbcType=TIMESTAMP}}

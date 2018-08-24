@@ -1,4 +1,4 @@
-package com.zhh.entity;
+package com.zhh.entity.base;
 /*
 CREATE TABLE `sys_role_permission` (
 `role_id` varchar(50) NOT NULL COMMENT '角色id',

@@ -2,8 +2,8 @@ package com.zhh.controller.dict;
 
 
 import com.zhh.controller.base.BaseController;
-import com.zhh.entity.DictType;
-import com.zhh.entity.Menu;
+import com.zhh.entity.dict.DictType;
+import com.zhh.entity.base.Menu;
 import com.zhh.service.dict.DictTypeService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;

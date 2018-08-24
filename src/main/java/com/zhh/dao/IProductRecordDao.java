@@ -1,7 +1,6 @@
 package com.zhh.dao;
 
-import com.zhh.entity.ProductRecord;
-import com.zhh.entity.ProductShop;
+import com.zhh.entity.product.ProductRecord;
 import com.zhh.util.PageUtil;
 import org.apache.ibatis.annotations.Param;
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhh.dao.IProductDao" >
-  <resultMap id="BaseResultMap" type="com.zhh.entity.Product" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.product.Product" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
@@ -11,7 +11,7 @@
     <association property="productType" column="type_id"  select="getDictData"/>
   </resultMap>
 
-  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
+  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.dict.DictData">
     select * from dict_data where id=#{id}
   </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
@@ -20,7 +20,7 @@
         from product
         where id = #{id,jdbcType=INTEGER}
     </select>
-  <insert id="insert" parameterType="com.zhh.entity.Product" >
+  <insert id="insert" parameterType="com.zhh.entity.product.Product" >
     insert into product (name, remark,
       unit_id,type_id,
       insert_date, update_date)
@@ -35,7 +35,7 @@
   <select id="getAllProduct" resultMap="BaseResultMap">
     select * from product
   </select>
-  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.Product" >
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.product.Product" >
     update product
     set name = #{name,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},
@@ -45,7 +45,7 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectProductCount" parameterType="com.zhh.entity.Product" resultType="java.lang.Integer">
+  <select id="selectProductCount" parameterType="com.zhh.entity.product.Product" resultType="java.lang.Integer">
     select count(1) from product
     <where>
       <if test="name != null" >

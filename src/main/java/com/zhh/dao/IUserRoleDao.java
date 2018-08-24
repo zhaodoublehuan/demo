@@ -2,7 +2,6 @@ package com.zhh.dao;
 
 import java.util.List;
 
-import com.zhh.entity.UserRole;
 import org.apache.ibatis.annotations.Param;
 
 public interface IUserRoleDao {

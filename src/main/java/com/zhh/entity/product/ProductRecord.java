@@ -1,6 +1,7 @@
-package com.zhh.entity;
+package com.zhh.entity.product;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.zhh.entity.dict.DictData;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;

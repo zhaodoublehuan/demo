@@ -2,9 +2,7 @@ package com.zhh.service.base;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.dao.IUserRoleDao;
-import com.zhh.entity.UserRole;
 import lombok.extern.log4j.Log4j;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

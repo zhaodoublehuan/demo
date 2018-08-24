@@ -34,12 +34,12 @@
                             <table id="menu_table" class="table table-bordered table-hover">
                                 <thead>
                                 <tr>
-                                    <th>登录账号</th>
-                                    <th>用户名称</th>
-                                    <th>用户年龄</th>
-                                    <th>用户性别</th>
-                                    <th>用户手机</th>
-                                    <th>用户邮箱</th>
+                                    <th>菜单名称</th>
+                                    <th>菜单地址</th>
+                                    <th>菜单描述</th>
+                                    <th>菜单样式</th>
+                                    <th>父级菜单</th>
+                                    <th>菜单序号</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>

@@ -1,9 +1,8 @@
 package com.zhh.controller.base;
 
-import com.zhh.entity.Menu;
-import com.zhh.entity.UserEntity;
+import com.zhh.entity.base.Menu;
+import com.zhh.entity.base.UserEntity;
 import com.zhh.exception.ZhhException;
-import com.zhh.service.base.MenuService;
 import com.zhh.service.base.UserRoleService;
 import com.zhh.service.base.UserService;
 import com.zhh.util.PageReturnParam;
@@ -154,7 +153,7 @@ public class UserController extends BaseController {
 		/*查询符合条件的用户*/
 		List<UserEntity> userList = userService.selectUsers(null,page);
 		/*查询总条数*/
-		count = userService.selectUsersCount(null);
+		count = userService.selectPageCountByCondition(null);
 
 		return new PageReturnParam(page.getsEcho(),count,userList);
 	}

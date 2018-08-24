@@ -1,8 +1,8 @@
 package com.zhh.controller.base;
 
 import com.alibaba.fastjson.JSON;
-import com.zhh.entity.Menu;
-import com.zhh.entity.UserEntity;
+import com.zhh.entity.base.Menu;
+import com.zhh.entity.base.UserEntity;
 import com.zhh.service.base.MenuService;
 import org.apache.log4j.Logger;
 import org.apache.shiro.SecurityUtils;

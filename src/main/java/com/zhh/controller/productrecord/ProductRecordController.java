@@ -3,8 +3,8 @@ package com.zhh.controller.productrecord;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.controller.base.BaseController;
-import com.zhh.entity.Menu;
-import com.zhh.entity.ProductRecord;
+import com.zhh.entity.base.Menu;
+import com.zhh.entity.product.ProductRecord;
 import com.zhh.service.product.ProductRecordService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;

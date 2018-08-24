@@ -1,6 +1,6 @@
 package com.zhh.dao;
 
-import com.zhh.entity.Permission;
+import com.zhh.entity.base.Permission;
 
 /**
 * @ClassName: IPermissionDao

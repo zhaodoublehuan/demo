@@ -1,7 +1,7 @@
 package com.zhh.entity.chart;
 
-import com.zhh.entity.DictData;
-import com.zhh.entity.Product;
+import com.zhh.entity.dict.DictData;
+import com.zhh.entity.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,7 @@
 package com.zhh.controller.chart;
 
 import com.zhh.controller.base.BaseController;
-import com.zhh.entity.Menu;
+import com.zhh.entity.base.Menu;
 import com.zhh.entity.chart.ChartData;
 import com.zhh.service.chart.ChartService;
 import org.springframework.beans.factory.annotation.Autowired;

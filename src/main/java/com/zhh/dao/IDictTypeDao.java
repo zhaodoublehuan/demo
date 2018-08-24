@@ -1,7 +1,7 @@
 package com.zhh.dao;
 
 import com.zhh.condition.dict.DictTypeCondition;
-import com.zhh.entity.DictType;
+import com.zhh.entity.dict.DictType;
 import com.zhh.util.PageUtil;
 import org.apache.ibatis.annotations.Param;
 

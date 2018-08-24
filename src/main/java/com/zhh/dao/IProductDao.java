@@ -1,6 +1,6 @@
 package com.zhh.dao;
 
-import com.zhh.entity.Product;
+import com.zhh.entity.product.Product;
 import com.zhh.util.PageUtil;
 import org.apache.ibatis.annotations.Param;
 

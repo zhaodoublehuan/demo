@@ -1,6 +1,6 @@
 package com.zhh.controller.base;
 
-import com.zhh.entity.Role;
+import com.zhh.entity.base.Role;
 import com.zhh.service.base.RoleService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;

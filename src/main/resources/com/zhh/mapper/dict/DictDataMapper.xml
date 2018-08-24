@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhh.dao.IDictDataDao" >
-  <resultMap id="BaseResultMap" type="com.zhh.entity.DictData" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.dict.DictData" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="remark" property="remark" jdbcType="VARCHAR" />
@@ -23,7 +23,7 @@
     delete from dict_data
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.zhh.entity.DictData" >
+  <insert id="insert" parameterType="com.zhh.entity.dict.DictData" >
     insert into dict_data (id, name, remark, 
       type_id, seq, insert_date, 
       update_date)
@@ -31,7 +31,7 @@
       #{typeId,jdbcType=INTEGER}, #{seq,jdbcType=INTEGER}, #{insertDate,jdbcType=TIMESTAMP}, 
       #{updateDate,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.zhh.entity.DictData" >
+  <insert id="insertSelective" parameterType="com.zhh.entity.dict.DictData" >
     insert into dict_data
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -80,7 +80,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.DictData" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.zhh.entity.dict.DictData" >
     update dict_data
     <set >
       <if test="name != null" >
@@ -104,7 +104,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.DictData" >
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.dict.DictData" >
     update dict_data
     set name = #{name,jdbcType=VARCHAR},
       remark = #{remark,jdbcType=VARCHAR},

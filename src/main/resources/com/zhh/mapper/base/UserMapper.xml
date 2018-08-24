@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhh.dao.IUserDao" >
-  <resultMap id="BaseResultMap" type="com.zhh.entity.UserEntity" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.base.UserEntity" >
     <id column="id" property="id" jdbcType="VARCHAR" />
     <result column="user_name" property="userName" jdbcType="VARCHAR" />
     <result column="login_no" property="loginNo" jdbcType="VARCHAR" />
@@ -18,30 +18,9 @@
   <sql id="Base_Column_List" >
     id, user_name, login_no, password, user_age, user_sex, mobile, email,active, insert_date, update_date
   </sql>
-  <!-- 根据条件查询用户集合 -->
-  <select id="selectUsers" resultMap="BaseResultMap" parameterType="java.util.Map" >
-    select 
-    <include refid="Base_Column_List" />
-    from sys_user
-    	where active = "Y" 
-    	<if test="user!=null">
-	   	  <if test="user.userName != null" >
-	        and user_name = #{user.userName,jdbcType=VARCHAR}
-	      </if>
-	      <if test="user.loginNo != null" >
-	        and login_no = #{user.loginNo,jdbcType=VARCHAR}
-	      </if>
-	      <if test="user.mobile != null" >
-	        and  mobile = #{user.mobile,jdbcType=VARCHAR}
-	      </if>
-	      <if test="user.email != null" >
-	        and  email = #{user.email,jdbcType=VARCHAR}
-	      </if>
-       </if>
-    limit #{page.recordStart},#{page.pageSize}
-  </select>
+
   <!-- 新建用户 -->
-  <insert id="add" parameterType="com.zhh.entity.UserEntity" >
+  <insert id="add" parameterType="com.zhh.entity.base.UserEntity" >
     insert into sys_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -109,7 +88,7 @@
     </trim>
   </insert>
   <!-- 修改用户信息 -->
-  <update id="update" parameterType="com.zhh.entity.UserEntity" >
+  <update id="update" parameterType="com.zhh.entity.base.UserEntity" >
     update sys_user
     <set >
        <if test="userName != null" >
@@ -154,22 +133,42 @@
   	where  
     login_no = #{loginNo} and active="Y"
   </select>
+
+  <sql id="pageSql">
+    <if test="page != null">
+      limit #{page.recordStart},#{page.pageSize}
+    </if>
+  </sql>
+
+  <sql id="conditionSql">
+    <where>
+      <if test="condition!=null">
+        <if test="condition.userName != null" >
+          and user_name = #{condition.userName,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.loginNo != null" >
+          and login_no = #{condition.loginNo,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.mobile != null" >
+          and  mobile = #{condition.mobile,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.email != null" >
+          and  email = #{condition.email,jdbcType=VARCHAR}
+        </if>
+        <if test="condition.active != null" >
+          and  email = #{condition.active,jdbcType=VARCHAR}
+        </if>
+      </if>
+    </where>
+  </sql>
+
   <!-- 查询用户数量 -->
-  <select id="selectUsersCount" resultType="java.lang.Integer" parameterType="com.zhh.entity.UserEntity">
-   	select count(1) from sys_user 
-     <where>
-   	  <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR}
-      </if>
-      <if test="login_no != null" >
-        login_no = #{loginNo,jdbcType=VARCHAR}
-      </if>
-      <if test="mobile != null" >
-        mobile = #{mobile,jdbcType=VARCHAR}
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR}
-      </if>
-    </where> 
+  <select id="selectPageCountByCondition" resultType="java.lang.Integer" parameterType="com.zhh.condition.user.UserCondition">
+    select count(0) from sys_user <include refid="conditionSql" />
+  </select>
+
+  <!-- 根据条件查询用户集合 -->
+  <select id="selectPageList" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/> from sys_user <include refid="conditionSql" /> <include refid="pageSql"/>
   </select>
 </mapper>

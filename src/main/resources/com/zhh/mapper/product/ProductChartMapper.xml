@@ -7,10 +7,10 @@
     <association property="product" column="product_id"  select="getProductData"/>
     <association property="productInoutType" column="product_inout_type"  select="getDictData"/>
   </resultMap>
-  <select id="getProductData" parameterType="int" resultType="com.zhh.entity.Product">
+  <select id="getProductData" parameterType="int" resultType="com.zhh.entity.product.Product">
     select * from product where id=#{id}
   </select>
-  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
+  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.dict.DictData">
     select * from dict_data where id=#{id}
   </select>
   <select id="getChartData" resultMap="BaseResultMap" parameterType="int">

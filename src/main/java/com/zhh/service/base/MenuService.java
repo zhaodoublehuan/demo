@@ -3,7 +3,7 @@ package com.zhh.service.base;
 import com.alibaba.fastjson.JSON;
 import com.zhh.condition.menu.MenuCondition;
 import com.zhh.dao.IMenuDao;
-import com.zhh.entity.Menu;
+import com.zhh.entity.base.Menu;
 import com.zhh.exception.ZhhException;
 import com.zhh.util.PageUtil;
 import com.zhh.util.UUIDUtils;

@@ -1,7 +1,7 @@
 package com.zhh.service.product;
 
 import com.zhh.dao.IProductRecordDao;
-import com.zhh.entity.ProductRecord;
+import com.zhh.entity.product.ProductRecord;
 import com.zhh.util.PageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

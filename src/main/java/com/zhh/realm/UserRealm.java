@@ -1,9 +1,9 @@
 package com.zhh.realm;
 
 import com.alibaba.fastjson.JSON;
-import com.zhh.entity.Permission;
-import com.zhh.entity.Role;
-import com.zhh.entity.UserEntity;
+import com.zhh.entity.base.Permission;
+import com.zhh.entity.base.Role;
+import com.zhh.entity.base.UserEntity;
 import com.zhh.service.base.RoleService;
 import com.zhh.service.base.UserService;
 import org.apache.log4j.Logger;

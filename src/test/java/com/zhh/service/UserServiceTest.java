@@ -2,15 +2,12 @@ package com.zhh.service;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.base.BaseTest;
-import com.zhh.entity.UserEntity;
+import com.zhh.entity.base.UserEntity;
 import com.zhh.exception.ZhhException;
 import com.zhh.service.base.UserService;
 import com.zhh.util.UUIDUtils;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class UserServiceTest extends BaseTest {
 	@Autowired

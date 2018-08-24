@@ -2,8 +2,8 @@ package com.zhh.controller.productshop;
 
 import com.alibaba.fastjson.JSON;
 import com.zhh.controller.base.BaseController;
-import com.zhh.entity.Menu;
-import com.zhh.entity.ProductShop;
+import com.zhh.entity.base.Menu;
+import com.zhh.entity.product.ProductShop;
 import com.zhh.service.product.ProductShopService;
 import com.zhh.util.PageReturnParam;
 import com.zhh.util.PageUtil;

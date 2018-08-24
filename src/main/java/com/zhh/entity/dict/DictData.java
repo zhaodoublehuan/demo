@@ -1,23 +1,24 @@
-package com.zhh.entity;
+package com.zhh.entity.dict;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
-import java.math.BigDecimal;
 import java.util.Date;
-
 @Getter
 @Setter
-public class Product {
+@ToString
+public class DictData {
+
     private Integer id;
 
     private String name;
 
     private String remark;
 
-    private DictData unitData;
+    private Integer typeId;
 
-    private DictData productType;
+    private Integer seq;
 
     private Date insertDate;
 

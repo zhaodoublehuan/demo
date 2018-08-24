@@ -2,7 +2,7 @@ package com.zhh.dao;
 
 import java.util.List;
 
-import com.zhh.entity.Role;
+import com.zhh.entity.base.Role;
 import org.apache.ibatis.annotations.Param;
 
 /**

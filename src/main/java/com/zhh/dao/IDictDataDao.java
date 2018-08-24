@@ -2,7 +2,7 @@ package com.zhh.dao;
 
 import com.zhh.bean.dict.DictDataBean;
 import com.zhh.condition.dict.DictDataCondition;
-import com.zhh.entity.DictData;
+import com.zhh.entity.dict.DictData;
 import com.zhh.util.PageUtil;
 import org.apache.ibatis.annotations.Param;
 

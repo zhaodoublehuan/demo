@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.zhh.dao.IProductRecordDao" >
-  <resultMap id="BaseResultMap" type="com.zhh.entity.ProductRecord" >
+  <resultMap id="BaseResultMap" type="com.zhh.entity.product.ProductRecord" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="product_count" property="productCount" jdbcType="DECIMAL" />
     <result column="product_price" property="productPrice" jdbcType="DECIMAL" />
@@ -12,16 +12,16 @@
     <association property="productShop" column="product_shop_id"  select="getProductShop"/>
     <association property="productInoutType" column="product_inout_type"  select="getDictData"/>
   </resultMap>
-  <select id="getProductShop" parameterType="int" resultType="com.zhh.entity.ProductShop">
+  <select id="getProductShop" parameterType="int" resultType="com.zhh.entity.product.ProductShop">
     select * from product_shop where id=#{id}
   </select>
-  <select id="getProductData" parameterType="int" resultType="com.zhh.entity.Product">
+  <select id="getProductData" parameterType="int" resultType="com.zhh.entity.product.Product">
     select * from product where id=#{id}
   </select>
-  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.DictData">
+  <select id="getDictData" parameterType="int" resultType="com.zhh.entity.dict.DictData">
     select * from dict_data where id=#{id}
   </select>
-  <insert id="insert" parameterType="com.zhh.entity.ProductRecord" >
+  <insert id="insert" parameterType="com.zhh.entity.product.ProductRecord" >
     insert into product_inout_record (product_id, product_count,
       product_price, product_shop_id, product_inout_type,inout_date,
       insert_date, update_date)
@@ -39,7 +39,7 @@
     delete from product_inout_record
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.ProductRecord" >
+  <update id="updateByPrimaryKey" parameterType="com.zhh.entity.product.ProductRecord" >
     update product_inout_record
     set product_id = #{product.id,jdbcType=INTEGER},
       product_count = #{productCount,jdbcType=DECIMAL},
@@ -51,7 +51,7 @@
       update_date = #{updateDate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectRecordCount" parameterType="com.zhh.entity.ProductRecord" resultType="java.lang.Integer">
+  <select id="selectRecordCount" parameterType="com.zhh.entity.product.ProductRecord" resultType="java.lang.Integer">
     select count(1) from product_inout_record
     <where>
       <if test="productId != null" >
